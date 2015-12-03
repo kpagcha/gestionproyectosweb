@@ -34,6 +34,7 @@
 	background-color: #eee;
 	border-radius: 5px;
 	padding: 35px;
+	margin-bottom: 40px;
 }
 
 #welcome h1 {
@@ -63,15 +64,19 @@
 	height: 400px;
 }
 
-#news {
+#news, #dates {
 	padding-left: 40px;
 }
 
-#news li {
+#news li, #dates li {
 	border-bottom: 1px solid #eee;
 	padding: 10px 0px;
 }
 
-#news li:last-child {
+#news li:last-child, #dates li:last-child {
 	border-bottom: none;
+}
+
+#dates {
+	margin-top: 40px;
 }
