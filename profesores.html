@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<title>Proyectos - Inicio</title>
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+	<link rel="stylesheet" href="css/app.css">
+	<link rel="stylesheet" href="css/profesores.css">
+	<script src="js/jquery-2.1.4.js"></script>
+	<script src="js/angular.js"></script>
+	<script src="js/app.js"></script>
+	<script src="https://maps.googleapis.com/maps/api/js"></script>
+	<script src="js/bootstrap.js"></script>
+	<script src="js/Chart.js-master/Chart.js"></script>
+	<script src="js/chart-profesores.js"></script>
+</head>
+<body>
+	<section id="upper-section">
+		<div class="container mini-container">
+			<nav class="navbar navbar-default navbar-static-top">
+				<div class="container-fluid">
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+							<span class="sr-only">Cambiar navegación</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+						<a href="index.html" class="navbar-brand">
+							<img src="img/logo_white.png" alt="Logo">
+						</a>
+					</div>
+					<div id="navbar" class="navbar-collapse collapse navbar-right">
+						<ul class="nav navbar-nav">
+							<li class="active">
+								<a href="index.html">Inicio</a>
+							</li>
+							<li>
+								<a href="tfg.html">Proyectos</a>
+							</li>
+							<li>
+								<a href="profesores.html">Profesores</a>
+							</li>
+							<li>
+								<a href="contactar.html">Contacto</a>
+							</li>
+							<li>
+								<a href="administracion.html">Administración</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</nav>
+		</div>
+
+		<div id="title" class="col-md-12">
+			<h1>Profesores</h1>
+		</div>
+	</section>
+
+	<section id="main-section">
+		<div class="container small-container">
+			<div class="row">
+				<div class="col-md-3 iconic-information-block">
+					<span class="glyphicon glyphicon glyphicon-bookmark"></span>
+					<p>Profesores del departamento</p>
+				</div>
+			</div>
+			<section id="professors-section" class="row">
+				<article id="professors-description" class="col-md-8">
+					<h1>Nuestros profesores</h1>
+					<p>Los profesores de nuestro departamento son profesionales de confianza de la Universidad de Cádiz. Imparten docencia en la especialidad de Tecnologías de la Información.</p>
+					<p>Su campo de conocimiento domina diversas áreas, entre otras, tecnologías web <em>back-end</em> y <em>front-end</em>, servicios web, administración de servidores y de redes, seguridad y calidad de sistermas.</p>
+					<p>Sus trabajos de investigación se encuentran entre los más destacados de la Escuela Superior de Ingeniería y destacan por el uso de las tecnologías más innovaduras.</p>
+				</article>
+				<aside id="aside" class="col-md-4">
+					<img src="img/logo_uca.png" alt="Logo de la UCA">
+				</aside>
+				<article id="professors" class="col-md-12">
+					<h1>Tabla de profesores</h1>
+					<table id="professors-table" class="table table-hover">
+						<thead>
+							<tr>
+								<th>Nombre</th>
+								<th>Apellidos</th>
+								<th>Puesto</th>
+								<th>Teléfono</th>
+								<th>Correo electrónico</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>Ángel</td>
+								<td>Pérez Gómez</td>
+								<td>Catedrático</td>
+								<td><a href="tel:+34956908071">956 90 80 71</a></td>
+								<td><a href="mailto:angel.perezgomez@uca.es">angel.perezgomez@uca.es</a></td>
+							</tr>
+							<tr>
+								<td>Isabel</td>
+								<td>Matías Robles</td>
+								<td>Titular</td>
+								<td><a href="tel:+34956908072">956 90 80 72</a></td>
+								<td><a href="mailto:isabel.matiasrobles@uca.es">isabel.matiasrobles@uca.es</a></td>
+							</tr>
+							<tr>
+								<td>Laura</td>
+								<td>López Torres</td>
+								<td>Contratado doctor</td>
+								<td><a href="tel:+34956908074">956 90 80 74</a></td>
+								<td><a href="mailto:laura.lopeztorres@uca.es">laura.lopeztorres@uca.es</a></td>
+							</tr>
+						</tbody>
+					</table>
+				</article>
+			</section>
+			<section id="profiles" class="col-md-8">
+				<div class="row">
+					<h1>Perfiles</h1>
+					<div class="col-md-4">
+						<div class="panel panel-default">
+							<div class="panel-body">
+								<img class="img-circle" src="img/avatar-01.png" alt="Foto de Ángel Pérez Gómez">
+							</div>
+							<div class="panel-footer">
+								<span>Ángel Pérez Gómez</span>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="panel panel-default">
+							<div class="panel-body">
+								<img class="img-circle" src="img/avatar-03.png" alt="Foto de Isabel Matías Robles">
+							</div>
+							<div class="panel-footer">
+								<span>Isabel Matías Robles</span>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="panel panel-default">
+							<div class="panel-body">
+								<img class="img-circle" src="img/avatar-09.png" alt="Laura López Torres">
+							</div>
+							<div class="panel-footer">
+								<span>Laura López Torres</span>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="panel panel-default">
+							<div class="panel-body">
+								<img class="img-circle" src="img/avatar-05.png" alt="Pepe Sánchez Andreu">
+							</div>
+							<div class="panel-footer">
+								<span>Pepe Sánchez Andreu</span>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="panel panel-default">
+							<div class="panel-body">
+								<img class="img-circle" src="img/avatar-12.png" alt="Manuel Esteban Peña">
+							</div>
+							<div class="panel-footer">
+								<span>Manuel Esteban Peña</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+			<aside id="ranking" class="col-md-4">
+				<h3 class="aside-header">Profesores más activos</h3>
+				<ul class="list-unstyled">
+					<li>
+						<span><strong>Ángel Pérez Gómez, </strong>6 proyectos</span>
+					</li>
+					<li>
+						<span><strong>Isabel Matías Robles, </strong>3 proyectos</span>
+					</li>
+					<li>
+						<span><strong>Laura López Torres, </strong>10 proyectos</span>
+					</li>
+				</ul>
+				<div class="col-md-12">
+					<canvas id="chart" width="200px" height="150px"></canvas>
+				</div>
+			</aside>
+		</div>
+	</section>
+
+	<div class="clearfix"></div>
+	
+	<footer>
+		<div class="col-md-12">
+			<p>&copy; 2015 Pablo Antonio García Chacón</p>
+			<a href="mailto:pabloantonio.garciachacon@alum.uca.es">pabloantonio.garciachacon@alum.uca.es</a>
+		</div>
+		<div class="col-md-12">
+			<img src="img/logo.png" alt="Logo">
+		</div>
+	</footer>
+</body>
+</html>
