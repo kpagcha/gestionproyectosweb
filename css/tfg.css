@@ -18,8 +18,8 @@
 .iconic-information-block {
 	margin: 0 auto;
 	float: none;
-	background-color: #FB914E;
-	color: #FBCB9E;
+	background-color: #fb914e;
+	color: #fff;
 	text-transform: uppercase;
 }
 
@@ -28,11 +28,68 @@
 }
 
 #projects-section .panel-default {
-	border-color: #FBCB9E;
+	border-color: #fbcb9e;
 }
 
 #projects-section .panel-heading {
 	font-weight: bold;
-	background-color: #FBD9B4;
-	border-color: #FBCB9E;
+	background-color: #fba768;
+	border-color: #fbcb9e;
+	font-size: 20px;
+}
+
+#projects-section hr {
+	border-color: #fbcb9e;
+}
+
+#project-image-container {
+	text-align: center;
+}
+
+#projects-section img {
+	height: 70%;
+	width: 70%;
+	margin-top: 25%;
+	margin-bottom: 25%;
+}
+
+#projects-section .panel-footer {
+	border-color: #fbcb9e;
+	text-align: center;
+	background-color: #fbcb9e;
+	font-weight: bold;
+}
+
+#stats {
+	margin: 30px auto;
+	padding-left: 40px;
+}
+
+#stats hr {
+	border-color: #ddd;
+}
+
+#stats li {
+	padding: 5px 0px;
+}
+
+#stats li:first-child {
+	font-size: 16px;
+}
+
+#chart {
+	margin: 0 auto;
+	margin-top: 20px;
+}
+
+#home-icon {
+	color: #46bfbd;
+}
+
+#health-icon {
+	color: #f7464a;
+}
+
+#tourism-icon {
+	color: #fed750;
 }

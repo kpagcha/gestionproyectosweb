@@ -11,6 +11,8 @@
 	<script src="js/app.js"></script>
 	<script src="https://maps.googleapis.com/maps/api/js"></script>
 	<script src="js/bootstrap.js"></script>
+	<script src="js/Chart.js-master/Chart.js"></script>
+	<script src="js/chart.js"></script>
 </head>
 <body>
 	<section id="upper-section">
@@ -56,23 +58,34 @@
 		</div>
 	</section>
 
-	<section>
-		<div class="container">
+	<section id="main-section">
+		<div class="container small-container">
 			<div class="row">
 				<div class="col-md-3 iconic-information-block">
 					<span class="glyphicon glyphicon glyphicon-bookmark"></span>
 					<p>Lista de proyectos</p>
 				</div>
 			</div>
-			<section id="projects-section" class="row mini-container">
+			<section id="projects-section" class="col-md-8">
 				<div class="row">
 					<div class="col-md-12">
 						<div class="panel panel-default">
 							<div class="panel-heading">Inteligencia Artificial</div>
 							<div class="panel-body">
-								<p>Proyecto de <strong>Estanislao Beltrán Serrano.</strong></p>
-								<p>Tutores del proyecto: Estanislao Beltrán Serrano.</p>
-								<p>Proyecto presentado el 7/7/2015 con una calificación de 6.7.</p>
+								<div class="col-md-8">
+									<p><strong>Autor: </strong>Estanislao Beltrán Serrano.</p>
+									<p><strong>Tutores: </strong>Estanislao Beltrán Serrano.</p>
+									<hr>
+									<p><strong>Estado del proyecto: </strong>Presentado.</p>
+									<p><strong>Fecha de presentación: </strong>7/7/2013</p>
+									<p><strong>Calificación: </strong>7.8</p>
+								</div>
+								<div id="project-image-container" class="col-md-4">
+									<img src="img/domotica_1.png" alt="Imagen icónica de domótica: una casa conectada a un portátil" class="img-circle">
+								</div>
+							</div>
+							<div class="panel-footer">
+								Domótica
 							</div>
 						</div>
 					</div>
@@ -80,24 +93,71 @@
 						<div class="panel panel-default">
 							<div class="panel-heading">Inteligencia Artificial</div>
 							<div class="panel-body">
-								<p>Proyecto de <strong>Estanislao Beltrán Serrano.</strong></p>
-								<p>Tutores del proyecto: Estanislao Beltrán Serrano.</p>
-								<p>Proyecto presentado el 7/7/2015 con una calificación de 6.7.</p>
+								<div class="col-md-8">
+									<p><strong>Autor: </strong>Estanislao Beltrán Serrano.</p>
+									<p><strong>Tutores: </strong>Estanislao Beltrán Serrano.</p>
+									<hr>
+									<p><strong>Estado del proyecto: </strong>Presentado.</p>
+									<p><strong>Fecha de presentación: </strong>7/7/2013</p>
+									<p><strong>Calificación: </strong>7.8</p>
+								</div>
+								<div id="project-image-container" class="col-md-4">
+									<img src="img/salud_3.png" alt="Imagen icónica de domótica: una casa conectada a un portátil" class="img-circle">
+								</div>
+							</div>
+							<div class="panel-footer">
+								Salud
 							</div>
 						</div>
 					</div>
+
 					<div class="col-md-12">
 						<div class="panel panel-default">
 							<div class="panel-heading">Inteligencia Artificial</div>
 							<div class="panel-body">
-								<p>Proyecto de <strong>Estanislao Beltrán Serrano.</strong></p>
-								<p>Tutores del proyecto: Estanislao Beltrán Serrano.</p>
-								<p>Proyecto presentado el 7/7/2015 con una calificación de 6.7.</p>
+								<div class="col-md-8">
+									<p><strong>Autor: </strong>Estanislao Beltrán Serrano.</p>
+									<p><strong>Tutores: </strong>Estanislao Beltrán Serrano.</p>
+									<hr>
+									<p><strong>Estado del proyecto: </strong>Presentado.</p>
+									<p><strong>Fecha de presentación: </strong>7/7/2013</p>
+									<p><strong>Calificación: </strong>7.8</p>
+								</div>
+								<div id="project-image-container" class="col-md-4">
+									<img src="img/turismo_3.png" alt="Imagen icónica de domótica: una casa conectada a un portátil" class="img-circle">
+								</div>
+							</div>
+							<div class="panel-footer">
+								Turismo
 							</div>
 						</div>
 					</div>
 				</div>
 			</section>
+			<aside id="stats" class="col-md-4">
+				<h3 class="aside-header">Estadísticas</h3>
+				<ul class="list-unstyled">
+					<li>
+						<strong>Total de proyectos: </strong>25
+					</li>
+					<hr>
+					<li>
+						<span id="home-icon" class="glyphicon glyphicon-home"></span>
+						<span><strong>Proyectos de domótica: </strong>11</span>
+					</li>
+					<li>
+						<span id="health-icon" class="glyphicon glyphicon-heart"></span>
+						<span><strong>Proyectos de salud: </strong>3</span>
+					</li>
+					<li>
+						<span id="tourism-icon" class="glyphicon glyphicon-sunglasses"></span>
+						<span><strong>Proyectos de turismo: </strong>4</span>
+					</li>
+				</ul>
+				<div class="col-md-12">
+					<canvas id="chart" width="150px" height="150px"></canvas>
+				</div>
+			</aside>
 		</div>
 	</section>
 

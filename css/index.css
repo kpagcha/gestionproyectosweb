@@ -25,7 +25,7 @@
 	height: 75px;
 }
 
-#middle-section {
+#main-section {
 	margin-top: 40px;
 	height: 350px;
 }
@@ -44,6 +44,19 @@
 
 .iconic-information-block {
 	margin: 0px 5px 25px 5px;
+	color: #eee;
+}
+
+#projects-block {
+	background-color: #fba768;
+}
+
+#professors-block {
+	background-color: #7367ae;
+}
+
+#admin-block {
+	background-color: #4cb547;
 }
 
 #map {
@@ -52,11 +65,6 @@
 
 #news {
 	padding-left: 40px;
-}
-
-#news h3 {
-	border-bottom: 2px solid #aaa;
-	text-align: center;
 }
 
 #news li {

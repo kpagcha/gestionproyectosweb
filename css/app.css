@@ -51,6 +51,10 @@ body {
 	width: 55%;
 }
 
+.small-container {
+	width: 70%;
+}
+
 .iconic-information-block {
 	background-color: #cecece;
 	text-align: center;
@@ -59,6 +63,13 @@ body {
 
 .iconic-information-block span {
 	font-size: 24px;
+}
+
+.aside-header {
+	margin-top: 0px;
+	border-bottom: 2px solid #aaa;
+	text-align: center;
+	padding-bottom: 10px;
 }
 
 footer {
