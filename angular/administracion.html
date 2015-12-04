@@ -24,7 +24,7 @@
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span>
 						</button>
-						<a href="index.html" class="navbar-brand">
+						<a href="http://departamentos.uca.es/C137/" target="_blank" class="navbar-brand">
 							<img src="img/logo_white.png" alt="Logo">
 						</a>
 					</div>
@@ -43,6 +43,9 @@
 								<a href="contactar.html">Contacto</a>
 							</li>
 							<li>
+								<a href="index.html#map">Mapa</a>
+							</li>
+							<li>
 								<a href="administracion.html">Administración</a>
 							</li>
 						</ul>
@@ -57,252 +60,254 @@
 	</section>
 
 	<section id="main-section">
-		<div id="block-container" class="row">
-			<div class="col-md-3 iconic-information-block">
-				<span class="glyphicon glyphicon-dashboard"></span>
-				<p>Administra los proyectos</p>
+		<div class="container small-container">
+			<div class="row">
+				<div class="col-md-3 iconic-information-block">
+					<span class="glyphicon glyphicon-dashboard"></span>
+					<p>Administra los proyectos</p>
+				</div>
 			</div>
-		</div>
-		<div class="row">
-			<section id="actions-container">
-				<div id="actions-header-container">
-					<h1>Elige qué acción quieres realizar</h1>
-					<p>Con el panel de administración puedes crear un nuevo proyecto, modificar uno existente, o eliminarlo.</p>
-				</div>
-				<div id="actions" class="container mini-container">
-					<div class="action-container col-md-4">
-						<div class="iconic-information-block action create" data-toggle="modal" data-target="#modal-create">
-							<div class="action-inner-container">
-								<span class="glyphicon glyphicon-ok"></span>
-								<p>Crear</p>
+			<div class="row">
+				<section id="actions-container">
+					<div id="actions-header-container">
+						<h1>Elige qué acción quieres realizar</h1>
+						<p>Con el panel de administración puedes crear un nuevo proyecto, modificar uno existente, o eliminarlo.</p>
+					</div>
+					<div id="actions" class="container mini-container">
+						<div class="action-container col-md-4">
+							<div class="iconic-information-block action create" data-toggle="modal" data-target="#modal-create">
+								<div class="action-inner-container">
+									<span class="glyphicon glyphicon-ok"></span>
+									<p>Crear</p>
+								</div>
+							</div>
+						</div>
+						<div class="action-container col-md-4">
+							<div class="iconic-information-block action update" data-toggle="modal" data-target="#modal-update">
+								<div class="action-inner-container">
+									<span class="glyphicon glyphicon-refresh"></span>
+									<p>Actualizar</p>
+								</div>
+							</div>
+						</div>
+						<div class="action-container col-md-4">
+							<div class="iconic-information-block action delete" data-toggle="modal" data-target="#modal-delete">
+								<div class="action-inner-container">
+									<span class="glyphicon glyphicon-remove"></span>
+									<p>Eliminar</p>
+								</div>
 							</div>
 						</div>
 					</div>
-					<div class="action-container col-md-4">
-						<div class="iconic-information-block action update" data-toggle="modal" data-target="#modal-update">
-							<div class="action-inner-container">
-								<span class="glyphicon glyphicon-refresh"></span>
-								<p>Actualizar</p>
+				</section>
+				<section id="modal-create-container">
+					<div class="modal fade" id="modal-create" role="dialog" aria-labelledby="modal-create-label">
+						<div class="modal-dialog" role="dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+										<span aria-hidden="true">&times;</span>
+									</button>
+									<h4 class="modal-title" id="modal-create-label">Crear proyecto</h4>
+								</div>
+								<div class="modal-body">
+									<form action="administracion.html" method="post" class="form-horizontal">
+										<div class="form-group">
+										<div class="form-group">
+											<label for="name" class="col-md-3 control-label">Nombre</label>
+											<div class="col-md-9">
+												<input required type="text" name="name" class="form-control">
+											</div>
+										</div>
+										<div class="form-group">
+											<label for="firstLastName" class="col-md-3 control-label">Primer apellido</label>
+											<div class="col-md-9">
+												<input required type="text" name="firstLastName" class="form-control">
+											</div>
+										</div>
+										<div class="form-group">
+											<label for="secondLastName" class="col-md-3 control-label">Segundo apellido</label>
+											<div class="col-md-9">
+												<input type="text" name="secondLastName" class="form-control">
+											</div>
+										</div>
+										<div class="form-group">
+											<label for="email" class="col-md-3 control-label">Correo electrónico</label>
+											<div class="col-md-9">
+												<input required type="email" name="email" class="form-control">
+											</div>
+										</div>
+										<div class="form-group">
+											<label for="title" class="col-md-3 control-label">Título del proyecto</label>
+											<div class="col-md-9">
+												<input required type="text" name="title" class="form-control">
+											</div>
+										</div>
+										<div class="form-group">
+											<label for="topic" class="col-md-3 control-label">Temática</label>
+											<div class="col-md-9">
+												<select name="topic" class="form-control">
+													<option value="Domótica">Domótica</option>
+													<option value="Salud">Salud</option>
+													<option value="Turismo">Turismo</option>
+												</select>
+											</div>
+										</div>
+										<div class="form-group">
+											<label for="tutor" class="col-md-3 control-label">Tutor</label>
+											<div class="col-md-9">
+												<input required type="text" name="tutor" class="form-control">
+											</div>
+										</div>
+										<div class="form-group">
+											<label for="cotutor" class="col-md-3 control-label">Cotutor</label>
+											<div class="col-md-9">
+												<input type="text" name="cotutor" class="form-control">
+											</div>
+										</div>
+										<div class="form-group">
+											<label for="state" class="col-md-3 control-label">Estado del proyecto</label>
+											<div class="col-md-9">
+												<label class="radio-inline">
+													<input type="radio" name="state" value="presentado" checked> Presentado
+												</label>
+												<label class="radio-inline">
+													<input type="radio" name="state" value="en desarrollo"> En desarrollo
+												</label>
+											</div>
+										</div>
+										<div class="form-group">
+											<label for="date" class="col-md-3 control-label">Fecha de presentación</label>
+											<div class="col-md-9">
+												<input type="date" name="date" class="form-control">
+											</div>
+										</div>
+										<div class="form-group">
+											<label for="mark" class="col-md-3 control-label">Calificación</label>
+											<div class="col-md-9">
+												<input type="number" name="mark" min="0" max="10" class="form-control">
+											</div>
+										</div>
+										<button type="submit" class="btn btn-info">Crear</button>
+									</form>
+								</div>
 							</div>
 						</div>
 					</div>
-					<div class="action-container col-md-4">
-						<div class="iconic-information-block action delete" data-toggle="modal" data-target="#modal-delete">
-							<div class="action-inner-container">
-								<span class="glyphicon glyphicon-remove"></span>
-								<p>Eliminar</p>
+				</section>
+				<section id="modal-update-container">
+					<div class="modal fade" id="modal-update" role="dialog" aria-labelledby="modal-update-label">
+						<div class="modal-dialog" role="dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+										<span aria-hidden="true">&times;</span>
+									</button>
+									<h4 class="modal-title" id="modal-update-label">Actualizar proyecto</h4>
+								</div>
+								<div class="modal-body">
+									<form action="administracion.html" method="post" class="form-horizontal">
+										<div class="form-group">
+											<label for="key" class="col-md-2 control-label">Clave</label>
+											<div class="col-md-10">
+												<input required type="text" name="key" class="form-control" placeholder="Clave del estudiante">
+											</div>
+										</div>
+											<div class="row">
+												<hr>
+											</div>
+										<div class="form-group">
+											<label for="name" class="col-md-3 control-label">Nombre</label>
+											<div class="col-md-9">
+												<input required type="text" name="name" class="form-control">
+											</div>
+										</div>
+										<div class="form-group">
+											<label for="firstLastName" class="col-md-3 control-label">Primer apellido</label>
+											<div class="col-md-9">
+												<input required type="text" name="firstLastName" class="form-control">
+											</div>
+										</div>
+										<div class="form-group">
+											<label for="secondLastName" class="col-md-3 control-label">Segundo apellido</label>
+											<div class="col-md-9">
+												<input type="text" name="secondLastName" class="form-control">
+											</div>
+										</div>
+										<div class="form-group">
+											<label for="title" class="col-md-3 control-label">Título del proyecto</label>
+											<div class="col-md-9">
+												<input required type="text" name="title" class="form-control">
+											</div>
+										</div>
+										<div class="form-group">
+											<label for="tutor" class="col-md-3 control-label">Tutor</label>
+											<div class="col-md-9">
+												<input required type="text" name="tutor" class="form-control">
+											</div>
+										</div>
+										<div class="form-group">
+											<label for="cotutor" class="col-md-3 control-label">Cotutor</label>
+											<div class="col-md-9">
+												<input type="text" name="cotutor" class="form-control">
+											</div>
+										</div>
+										<div class="form-group">
+											<label for="state" class="col-md-3 control-label">Estado del proyecto</label>
+											<div class="col-md-9">
+												<label class="radio-inline">
+													<input type="radio" name="state" value="presentado" checked> Presentado
+												</label>
+												<label class="radio-inline">
+													<input type="radio" name="state" value="en desarrollo"> En desarrollo
+												</label>
+											</div>
+										</div>
+										<div class="form-group">
+											<label for="date" class="col-md-3 control-label">Fecha de presentación</label>
+											<div class="col-md-9">
+												<input type="date" name="date" class="form-control">
+											</div>
+										</div>
+										<div class="form-group">
+											<label for="mark" class="col-md-3 control-label">Calificación</label>
+											<div class="col-md-9">
+												<input type="number" name="mark" class="form-control">
+											</div>
+										</div>
+										<button type="submit" class="btn btn-warning">Actualizar</button>
+									</form>
+								</div>
 							</div>
 						</div>
 					</div>
-				</div>
-			</section>
-			<section id="modal-create-container">
-				<div class="modal fade" id="modal-create" role="dialog" aria-labelledby="modal-create-label">
-					<div class="modal-dialog" role="dialog">
-						<div class="modal-content">
-							<div class="modal-header">
-								<button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
-									<span aria-hidden="true">&times;</span>
-								</button>
-								<h4 class="modal-title" id="modal-create-label">Crear proyecto</h4>
-							</div>
-							<div class="modal-body">
-								<form action="administracion.html" method="post" class="form-horizontal">
-									<div class="form-group">
-									<div class="form-group">
-										<label for="name" class="col-md-3 control-label">Nombre</label>
-										<div class="col-md-9">
-											<input required type="text" name="name" class="form-control">
+				</section>
+				<section id="modal-delete-container">
+					<div class="modal fade" id="modal-delete" role="dialog" aria-labelledby="modal-delete-label">
+						<div class="modal-dialog" role="dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+										<span aria-hidden="true">&times;</span>
+									</button>
+									<h4 class="modal-title" id="modal-delete-label">Eliminar proyecto</h4>
+								</div>
+								<div class="modal-body">
+									<form action="administracion.html" method="post" class="form-horizontal">
+										<div class="form-group">
+											<label for="key" class="col-md-2 control-label">Clave</label>
+											<div class="col-md-10">
+												<input required type="text" name="key" class="form-control" placeholder="Clave del estudiante">
+											</div>
 										</div>
-									</div>
-									<div class="form-group">
-										<label for="firstLastName" class="col-md-3 control-label">Primer apellido</label>
-										<div class="col-md-9">
-											<input required type="text" name="firstLastName" class="form-control">
-										</div>
-									</div>
-									<div class="form-group">
-										<label for="secondLastName" class="col-md-3 control-label">Segundo apellido</label>
-										<div class="col-md-9">
-											<input type="text" name="secondLastName" class="form-control">
-										</div>
-									</div>
-									<div class="form-group">
-										<label for="email" class="col-md-3 control-label">Correo electrónico</label>
-										<div class="col-md-9">
-											<input required type="email" name="email" class="form-control">
-										</div>
-									</div>
-									<div class="form-group">
-										<label for="title" class="col-md-3 control-label">Título del proyecto</label>
-										<div class="col-md-9">
-											<input required type="text" name="title" class="form-control">
-										</div>
-									</div>
-									<div class="form-group">
-										<label for="topic" class="col-md-3 control-label">Temática</label>
-										<div class="col-md-9">
-											<select name="topic" class="form-control">
-												<option value="Domótica">Domótica</option>
-												<option value="Salud">Salud</option>
-												<option value="Turismo">Turismo</option>
-											</select>
-										</div>
-									</div>
-									<div class="form-group">
-										<label for="tutor" class="col-md-3 control-label">Tutor</label>
-										<div class="col-md-9">
-											<input required type="text" name="tutor" class="form-control">
-										</div>
-									</div>
-									<div class="form-group">
-										<label for="cotutor" class="col-md-3 control-label">Cotutor</label>
-										<div class="col-md-9">
-											<input type="text" name="cotutor" class="form-control">
-										</div>
-									</div>
-									<div class="form-group">
-										<label for="state" class="col-md-3 control-label">Estado del proyecto</label>
-										<div class="col-md-9">
-											<label class="radio-inline">
-												<input type="radio" name="state" value="presentado" checked> Presentado
-											</label>
-											<label class="radio-inline">
-												<input type="radio" name="state" value="en desarrollo"> En desarrollo
-											</label>
-										</div>
-									</div>
-									<div class="form-group">
-										<label for="date" class="col-md-3 control-label">Fecha de presentación</label>
-										<div class="col-md-9">
-											<input type="date" name="date" class="form-control">
-										</div>
-									</div>
-									<div class="form-group">
-										<label for="mark" class="col-md-3 control-label">Calificación</label>
-										<div class="col-md-9">
-											<input type="number" name="mark" min="0" max="10" class="form-control">
-										</div>
-									</div>
-									<button type="submit" class="btn btn-info">Crear</button>
-								</form>
+										<button type="submit" class="btn btn-danger">Eliminar</button>
+									</form>
+								</div>
 							</div>
 						</div>
 					</div>
-				</div>
-			</section>
-			<section id="modal-update-container">
-				<div class="modal fade" id="modal-update" role="dialog" aria-labelledby="modal-update-label">
-					<div class="modal-dialog" role="dialog">
-						<div class="modal-content">
-							<div class="modal-header">
-								<button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
-									<span aria-hidden="true">&times;</span>
-								</button>
-								<h4 class="modal-title" id="modal-update-label">Actualizar proyecto</h4>
-							</div>
-							<div class="modal-body">
-								<form action="administracion.html" method="post" class="form-horizontal">
-									<div class="form-group">
-										<label for="key" class="col-md-2 control-label">Clave</label>
-										<div class="col-md-10">
-											<input required type="text" name="key" class="form-control" placeholder="Clave del estudiante">
-										</div>
-									</div>
-										<div class="row">
-											<hr>
-										</div>
-									<div class="form-group">
-										<label for="name" class="col-md-3 control-label">Nombre</label>
-										<div class="col-md-9">
-											<input required type="text" name="name" class="form-control">
-										</div>
-									</div>
-									<div class="form-group">
-										<label for="firstLastName" class="col-md-3 control-label">Primer apellido</label>
-										<div class="col-md-9">
-											<input required type="text" name="firstLastName" class="form-control">
-										</div>
-									</div>
-									<div class="form-group">
-										<label for="secondLastName" class="col-md-3 control-label">Segundo apellido</label>
-										<div class="col-md-9">
-											<input type="text" name="secondLastName" class="form-control">
-										</div>
-									</div>
-									<div class="form-group">
-										<label for="title" class="col-md-3 control-label">Título del proyecto</label>
-										<div class="col-md-9">
-											<input required type="text" name="title" class="form-control">
-										</div>
-									</div>
-									<div class="form-group">
-										<label for="tutor" class="col-md-3 control-label">Tutor</label>
-										<div class="col-md-9">
-											<input required type="text" name="tutor" class="form-control">
-										</div>
-									</div>
-									<div class="form-group">
-										<label for="cotutor" class="col-md-3 control-label">Cotutor</label>
-										<div class="col-md-9">
-											<input type="text" name="cotutor" class="form-control">
-										</div>
-									</div>
-									<div class="form-group">
-										<label for="state" class="col-md-3 control-label">Estado del proyecto</label>
-										<div class="col-md-9">
-											<label class="radio-inline">
-												<input type="radio" name="state" value="presentado" checked> Presentado
-											</label>
-											<label class="radio-inline">
-												<input type="radio" name="state" value="en desarrollo"> En desarrollo
-											</label>
-										</div>
-									</div>
-									<div class="form-group">
-										<label for="date" class="col-md-3 control-label">Fecha de presentación</label>
-										<div class="col-md-9">
-											<input type="date" name="date" class="form-control">
-										</div>
-									</div>
-									<div class="form-group">
-										<label for="mark" class="col-md-3 control-label">Calificación</label>
-										<div class="col-md-9">
-											<input type="number" name="mark" class="form-control">
-										</div>
-									</div>
-									<button type="submit" class="btn btn-warning">Actualizar</button>
-								</form>
-							</div>
-						</div>
-					</div>
-				</div>
-			</section>
-			<section id="modal-delete-container">
-				<div class="modal fade" id="modal-delete" role="dialog" aria-labelledby="modal-delete-label">
-					<div class="modal-dialog" role="dialog">
-						<div class="modal-content">
-							<div class="modal-header">
-								<button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
-									<span aria-hidden="true">&times;</span>
-								</button>
-								<h4 class="modal-title" id="modal-delete-label">Eliminar proyecto</h4>
-							</div>
-							<div class="modal-body">
-								<form action="administracion.html" method="post" class="form-horizontal">
-									<div class="form-group">
-										<label for="key" class="col-md-2 control-label">Clave</label>
-										<div class="col-md-10">
-											<input required type="text" name="key" class="form-control" placeholder="Clave del estudiante">
-										</div>
-									</div>
-									<button type="submit" class="btn btn-danger">Eliminar</button>
-								</form>
-							</div>
-						</div>
-					</div>
-				</div>
-			</section>
+				</section>
+			</div>
 		</div>
 	</section>
 

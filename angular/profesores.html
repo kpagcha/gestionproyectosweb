@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" ng-app="GestionProyectos">
 <head>
 	<meta charset="UTF-8">
 	<title>Proyectos - Profesores</title>
@@ -8,13 +8,13 @@
 	<link rel="stylesheet" href="css/app.css">
 	<link rel="stylesheet" href="css/profesores.css">
 	<script src="js/jquery-2.1.4.js"></script>
+	<script src="js/latinise.js"></script>
 	<script src="js/angular.js"></script>
 	<script src="js/app.js"></script>
 	<script src="js/bootstrap.js"></script>
 	<script src="js/Chart.js-master/Chart.js"></script>
-	<script src="js/chart-profesores.js"></script>
 </head>
-<body>
+<body ng-controller="ProfessorsCtrl">
 	<section id="upper-section">
 		<div class="container mini-container">
 			<nav class="navbar navbar-default navbar-static-top">
@@ -26,7 +26,7 @@
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span>
 						</button>
-						<a href="index.html" class="navbar-brand">
+						<a href="http://departamentos.uca.es/C137/" target="_blank" class="navbar-brand">
 							<img src="img/logo_white.png" alt="Logo">
 						</a>
 					</div>
@@ -43,6 +43,9 @@
 							</li>
 							<li>
 								<a href="contactar.html">Contacto</a>
+							</li>
+							<li>
+								<a href="index.html#map">Mapa</a>
 							</li>
 							<li>
 								<a href="administracion.html">Administración</a>
@@ -74,7 +77,9 @@
 					<p>Sus trabajos de investigación se encuentran entre los más destacados de la Escuela Superior de Ingeniería y destacan por el uso de las tecnologías más innovaduras.</p>
 				</article>
 				<aside id="aside" class="col-md-4">
-					<img src="img/logo_uca.png" alt="Logo de la UCA">
+					<a href="http://departamentos.uca.es/C137/" target="_blank">
+						<img src="img/logo_uca.png" alt="Logo de la UCA">
+					</a>
 				</aside>
 				<article id="professors" class="col-md-12">
 					<h1>Tabla de profesores</h1>
@@ -82,33 +87,17 @@
 						<thead>
 							<tr>
 								<th>Nombre</th>
-								<th>Apellidos</th>
 								<th>Puesto</th>
 								<th>Teléfono</th>
 								<th>Correo electrónico</th>
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-								<td>Ángel</td>
-								<td>Pérez Gómez</td>
-								<td>Catedrático</td>
-								<td><a href="tel:+34956908071">956 90 80 71</a></td>
-								<td><a href="mailto:angel.perezgomez@uca.es">angel.perezgomez@uca.es</a></td>
-							</tr>
-							<tr>
-								<td>Isabel</td>
-								<td>Matías Robles</td>
-								<td>Titular</td>
-								<td><a href="tel:+34956908072">956 90 80 72</a></td>
-								<td><a href="mailto:isabel.matiasrobles@uca.es">isabel.matiasrobles@uca.es</a></td>
-							</tr>
-							<tr>
-								<td>Laura</td>
-								<td>López Torres</td>
-								<td>Contratado doctor</td>
-								<td><a href="tel:+34956908074">956 90 80 74</a></td>
-								<td><a href="mailto:laura.lopeztorres@uca.es">laura.lopeztorres@uca.es</a></td>
+							<tr ng-repeat="professor in professors">
+								<td>{{ professor.name }}</td>
+								<td>{{ professor.position }}</td>
+								<td><a href="tel:+34{{ professor.phone }}">{{ professor.phoneFormat }}</a></td>
+								<td><a href="mailto:{{ professor.email }}">{{ professor.email }}</a></td>
 							</tr>
 						</tbody>
 					</table>
@@ -127,43 +116,13 @@
 							</div>
 						</div>
 					</div>
-					<div class="col-md-4">
+					<div class="col-md-4" ng-repeat="profile in profiles">
 						<div class="panel panel-default">
 							<div class="panel-body">
-								<img class="img-circle" src="img/avatar-03.png" alt="Foto de Isabel Matías Robles">
+								<img class="img-circle" src="img/{{ profile.img }}" alt="{{ profile.description }}">
 							</div>
 							<div class="panel-footer">
-								<span>Isabel Matías Robles</span>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-4">
-						<div class="panel panel-default">
-							<div class="panel-body">
-								<img class="img-circle" src="img/avatar-09.png" alt="Laura López Torres">
-							</div>
-							<div class="panel-footer">
-								<span>Laura López Torres</span>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-4">
-						<div class="panel panel-default">
-							<div class="panel-body">
-								<img class="img-circle" src="img/avatar-05.png" alt="Pepe Sánchez Andreu">
-							</div>
-							<div class="panel-footer">
-								<span>Pepe Sánchez Andreu</span>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-4">
-						<div class="panel panel-default">
-							<div class="panel-body">
-								<img class="img-circle" src="img/avatar-12.png" alt="Manuel Esteban Peña">
-							</div>
-							<div class="panel-footer">
-								<span>Manuel Esteban Peña</span>
+								<span>{{ profile.name }}</span>
 							</div>
 						</div>
 					</div>
@@ -172,18 +131,12 @@
 			<aside id="ranking" class="col-md-4">
 				<h3 class="aside-header">Profesores más activos</h3>
 				<ul class="list-unstyled">
-					<li>
-						<span><strong>Ángel Pérez Gómez, </strong>6 proyectos</span>
-					</li>
-					<li>
-						<span><strong>Isabel Matías Robles, </strong>3 proyectos</span>
-					</li>
-					<li>
-						<span><strong>Laura López Torres, </strong>10 proyectos</span>
+					<li ng-repeat="professor in ranking">
+						<span><strong>{{ professor.name }}, </strong>{{ professor.projectCount }} proyectos</span>
 					</li>
 				</ul>
 				<div class="col-md-12">
-					<canvas id="chart" width="200px" height="150px"></canvas>
+					<canvas id="chart" width="300px" height="150px"></canvas>
 				</div>
 			</aside>
 		</div>

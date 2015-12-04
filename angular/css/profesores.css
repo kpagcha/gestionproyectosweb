@@ -73,6 +73,11 @@ h1 {
 	background-color: #8f73cc;
 	color: #fff;
 	border-radius: 3px;
+	height: 62px;
+	padding-top: 10px;
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
 }
 
 #profiles img {
@@ -91,4 +96,8 @@ h1 {
 
 #ranking li {
 	padding: 5px 0px;
+}
+
+#chart {
+	padding-left: 0px;
 }

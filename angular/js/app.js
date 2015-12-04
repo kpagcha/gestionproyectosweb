@@ -2,7 +2,7 @@ var app = angular.module('GestionProyectos', []);
 
 app.controller('IndexCtrl', function($scope, ws) {
 
-	ws.getAllEstudiantes().then(function (data) {
+	ws.getAllStudents().then(function (data) {
 		var count = 0;
 		var limit = 6;
 		var projects = [];
@@ -23,7 +23,7 @@ app.controller('IndexCtrl', function($scope, ws) {
 
 app.controller('ProjectsCtrl', function($scope, ws) {
 
-	ws.getAllEstudiantes().then(function (data) {
+	ws.getAllStudents().then(function (data) {
 		var projects = [];
 
 		var topics = {
@@ -59,7 +59,7 @@ app.controller('ProjectsCtrl', function($scope, ws) {
 				"date": student.fechaPresentacionProyecto,
 				"mark": student.calificacionProyecto,
 				"topic": topic,
-				"img": topics[topic]["path"].replace("?", randomInt(1, keys.length)),
+				"img": topics[topic]["path"].replace("?", randomInt(1, 3)),
 				"imgDescription": topics[topic]["alt"]
 			});
 		});
@@ -97,6 +97,112 @@ app.controller('ProjectsCtrl', function($scope, ws) {
 
 });
 
+app.controller('ProfessorsCtrl', function($scope, ws) {
+
+	ws.getAllStudents().then(function (data) {
+		var professorsTmp = [];
+
+		$.each(data, function(key, student) {
+			professorsTmp.push(student.tutor1);
+			if (student.tutor2 && student.tutor2.len !== 0)
+				professorsTmp.push(student.tutor2);
+		});
+
+		var professors = {};
+		var profiles = [];
+
+		var positions = [
+			"Catedrático",
+			"Titular",
+			"Contratado doctor",
+			"Ayudante doctor",
+			"Sustituto interino"
+		];
+
+		$.each(professorsTmp, function(key, professor) {
+			var d1 = randomInt(0, 9).toString();
+			var d2 = randomInt(0, 9).toString();
+
+			if (professor in professors)
+				professors[professor]["count"] = professors[professor]["count"] + 1;
+			else {
+				professors[professor] = {};
+
+				professors[professor] = {
+					"name": professor,
+					"position": positions[randomInt(0, positions.length-1)],
+					"phoneFormat": "956 90 80 " + d1.toString() + d2.toString(),
+					"phone": "9569080" + d1 + d2,
+					"email": buildEmail(professor),
+					"count": 1
+				};
+			}
+
+			var avatar = "avatar-?.png";
+			var rnd = randomInt(1, 14);
+			if (rnd < 10) avatar = avatar.replace("?", "0" + rnd);
+			else avatar = avatar.replace("?", rnd);
+
+			profiles.push({
+				"name": professor,
+				"img": avatar,
+				"description": "Foto de " + professor
+			});
+		});
+
+		var projectParticipation = new Array();
+
+		$.each(professors, function(key, professor) {
+			projectParticipation.push({
+				name: professor["name"],
+				projectCount: professor["count"]
+			});
+		});
+		projectParticipation = projectParticipation.sort(function (a, b) {
+			a = a.projectCount;
+			b = b.projectCount;
+			return a > b ? -1 : (a < b ? 1 : 0);
+		});
+
+		var ranking = [];
+		for (i = 0; i < 3; i++) {
+			ranking.push({
+				"name": projectParticipation[i].name,
+				"projectCount": projectParticipation[i].projectCount
+			});
+		}
+
+		$scope.professors = professors;
+		$scope.profiles = profiles;
+		$scope.ranking = ranking;
+
+		context = $("#chart").get(0).getContext("2d");
+		var data = [
+		    {
+		        value: ranking[0].projectCount,
+		        color: "#F7464A",
+		        highlight: "#FF5A5E",
+		        label: ranking[0].name
+		    },
+			{
+		        value: ranking[1].projectCount,
+		        color:"#46BFBD",
+		        highlight: "#5AD3D1",
+		        label: ranking[1].name
+		    },
+		    {
+		        value: ranking[2].projectCount,
+		        color: "#FDB45C",
+		        highlight: "#FFC870",
+		        label: ranking[2].name
+		    }
+		];
+
+		var chart = new Chart(context).PolarArea(data);
+	});
+
+});
+
 app.config(['$httpProvider', function($httpProvider) {
 	$httpProvider.defaults.useXDomain = true;
 	delete $httpProvider.defaults.headers.common['X-Requested-With'];
@@ -116,7 +222,7 @@ app.factory('ws', function($http, $q) {
 	var delete_estudiante_path = "/eliminar";
 
 	return {
-		getAllEstudiantes: function() {
+		getAllStudents: function() {
 			var url = full_path + get_all_estudiantes_path;
 			return $http.get(url).then(function(response) {
 				return response.data;
@@ -127,4 +233,8 @@ app.factory('ws', function($http, $q) {
 
 function randomInt(min, max) {
 	return Math.floor(Math.random() * (max - min + 1) + min);
+}
+
+function buildEmail(name) {
+	return name.latinise().toLowerCase().split(" ").join("") + "@uca.es";
 }
