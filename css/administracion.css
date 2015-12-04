@@ -73,6 +73,12 @@
 	align-self: center;
 }
 
+@media (min-width: 768px) {
+	#modal-create .modal-dialog, #modal-update .modal-dialog {
+		width: 800px;
+	}
+}
+
 .modal-header {
 	background-color: #4cb547;
 	color: #fff;
@@ -95,10 +101,4 @@
 .btn {
 	display: block;
 	margin: 0 auto;
-}
-
-@media (min-width: 768px) {
-	#modal-update .modal-dialog {
-		width: 800px;
-	}
 }
