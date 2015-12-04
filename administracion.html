@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<title>Proyectos - Contacto</title>
+	<link rel="icon" href="img/logo.ico">
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+	<link rel="stylesheet" href="css/app.css">
+	<link rel="stylesheet" href="css/administracion.css">
+	<script src="js/jquery-2.1.4.js"></script>
+	<script src="js/angular.js"></script>
+	<script src="js/app.js"></script>
+	<script src="js/bootstrap.js"></script>
+</head>
+<body>
+	<section id="upper-section">
+		<div class="container mini-container">
+			<nav class="navbar navbar-default navbar-static-top">
+				<div class="container-fluid">
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+							<span class="sr-only">Cambiar navegación</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+						<a href="index.html" class="navbar-brand">
+							<img src="img/logo_white.png" alt="Logo">
+						</a>
+					</div>
+					<div id="navbar" class="navbar-collapse collapse navbar-right">
+						<ul class="nav navbar-nav">
+							<li class="active">
+								<a href="index.html">Inicio</a>
+							</li>
+							<li>
+								<a href="tfg.html">Proyectos</a>
+							</li>
+							<li>
+								<a href="profesores.html">Profesores</a>
+							</li>
+							<li>
+								<a href="contactar.html">Contacto</a>
+							</li>
+							<li>
+								<a href="administracion.html">Administración</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</nav>
+		</div>
+
+		<div id="title" class="col-md-12">
+			<h1>Administración</h1>
+		</div>
+	</section>
+
+	<section id="main-section">
+		<div id="block-container" class="row">
+			<div class="col-md-3 iconic-information-block">
+				<span class="glyphicon glyphicon-dashboard"></span>
+				<p>Administra los proyectos</p>
+			</div>
+		</div>
+		<div class="row">
+			<section id="actions-container">
+				<div id="actions-header-container">
+					<h1>Elige qué acción quieres realizar</h1>
+					<p>Con el panel de administración puedes crear un nuevo proyecto, modificar uno existente, o eliminarlo.</p>
+				</div>
+				<div id="actions" class="container mini-container">
+					<div class="action-container col-md-4">
+						<div class="iconic-information-block action create">
+							<div class="action-inner-container">
+								<span class="glyphicon glyphicon-dashboard"></span>
+								<p>Crear</p>
+							</div>
+						</div>
+					</div>
+					<div class="action-container col-md-4">
+						<div class="iconic-information-block action update" data-toggle="modal" data-target="#modal-update">
+							<div class="action-inner-container">
+								<span class="glyphicon glyphicon-dashboard"></span>
+								<p>Actualizar</p>
+							</div>
+						</div>
+					</div>
+					<div class="action-container col-md-4">
+						<div class="iconic-information-block action delete" data-toggle="modal" data-target="#modal-delete">
+							<div class="action-inner-container">
+								<span class="glyphicon glyphicon-dashboard"></span>
+								<p>Eliminar</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+			<section id="modal-create-container">
+				
+			</section>
+			<section id="modal-update-container">
+				<div class="modal fade" id="modal-update" role="dialog" aria-labelledby="modal-update-label">
+					<div class="modal-dialog" role="dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+									<span aria-hidden="true">&times;</span>
+								</button>
+								<h4 class="modal-title" id="modal-update-label">Actualizar proyecto</h4>
+							</div>
+							<div class="modal-body">
+								<form action="administracion.html" method="post" class="form-horizontal">
+									<div class="form-group">
+										<label for="key" class="col-md-2 control-label">Clave</label>
+										<div class="col-md-10">
+											<input type="text" name="key" class="form-control" placeholder="Clave del estudiante">
+										</div>
+									</div>
+										<div class="row">
+											<hr>
+										</div>
+									<div class="form-group">
+										<label for="name" class="col-md-3 control-label">Nombre</label>
+										<div class="col-md-9">
+											<input type="text" name="name" class="form-control">
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="firstLastName" class="col-md-3 control-label">Primer apellido</label>
+										<div class="col-md-9">
+											<input type="text" name="firstLastName" class="form-control">
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="secondLastName" class="col-md-3 control-label">Segundo apellido</label>
+										<div class="col-md-9">
+											<input type="text" name="secondLastName" class="form-control">
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="title" class="col-md-3 control-label">Título del proyecto</label>
+										<div class="col-md-9">
+											<input type="text" name="title" class="form-control">
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="tutor" class="col-md-3 control-label">Tutor</label>
+										<div class="col-md-9">
+											<input type="text" name="tutor" class="form-control">
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="cotutor" class="col-md-3 control-label">Cotutor</label>
+										<div class="col-md-9">
+											<input type="text" name="cotutor" class="form-control">
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="state" class="col-md-3 control-label">Estado del proyecto</label>
+										<div class="col-md-9">
+											<label class="radio-inline">
+												<input type="radio" name="state" value="presentado"> Presentado
+											</label>
+											<label class="radio-inline">
+												<input type="radio" name="state" value="en desarrollo"> En desarrollo
+											</label>
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="date" class="col-md-3 control-label">Fecha de presentación</label>
+										<div class="col-md-9">
+											<input type="text" name="date" class="form-control">
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="mark" class="col-md-3 control-label">Calificación</label>
+										<div class="col-md-9">
+											<input type="text" name="mark" class="form-control">
+										</div>
+									</div>
+									<button type="submit" class="btn btn-warning">Actualizar</button>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+			<section id="modal-delete-container">
+				<div class="modal fade" id="modal-delete" role="dialog" aria-labelledby="modal-delete-label">
+					<div class="modal-dialog" role="dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+									<span aria-hidden="true">&times;</span>
+								</button>
+								<h4 class="modal-title" id="modal-delete-label">Eliminar proyecto</h4>
+							</div>
+							<div class="modal-body">
+								<form action="administracion.html" method="post" class="form-horizontal">
+									<div class="form-group">
+										<label for="key" class="col-md-2 control-label">Clave</label>
+										<div class="col-md-10">
+											<input type="text" name="key" class="form-control" placeholder="Clave del estudiante">
+										</div>
+									</div>
+									<button type="submit" class="btn btn-danger">Eliminar</button>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+		</div>
+	</section>
+
+	<div class="clearfix"></div>
+	
+	<footer>
+		<div class="col-md-12">
+			<p>&copy; 2015 Pablo Antonio García Chacón</p>
+			<a href="mailto:pabloantonio.garciachacon@alum.uca.es">pabloantonio.garciachacon@alum.uca.es</a>
+		</div>
+		<div class="col-md-12">
+			<img src="img/logo.png" alt="Logo">
+		</div>
+	</footer>
+</body>
+</html>
