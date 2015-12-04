@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" ng-app="GestionProyectos">
 <head>
 	<meta charset="UTF-8">
 	<title>Proyectos - Contacto</title>
@@ -8,11 +8,12 @@
 	<link rel="stylesheet" href="css/app.css">
 	<link rel="stylesheet" href="css/administracion.css">
 	<script src="js/jquery-2.1.4.js"></script>
+	<script src="js/date.format.js"></script>
 	<script src="js/angular.js"></script>
 	<script src="js/app.js"></script>
 	<script src="js/bootstrap.js"></script>
 </head>
-<body>
+<body ng-controller="AdminCtrl">
 	<section id="upper-section">
 		<div class="container mini-container">
 			<nav class="navbar navbar-default navbar-static-top">
@@ -111,7 +112,7 @@
 									<h4 class="modal-title" id="modal-create-label">Crear proyecto</h4>
 								</div>
 								<div class="modal-body">
-									<form action="administracion.html" method="post" class="form-horizontal">
+									<form id="create" ng-submit="submitCreateForm()" class="form-horizontal">
 										<div class="form-group">
 										<div class="form-group">
 											<label for="name" class="col-md-3 control-label">Nombre</label>
@@ -169,23 +170,23 @@
 											<label for="state" class="col-md-3 control-label">Estado del proyecto</label>
 											<div class="col-md-9">
 												<label class="radio-inline">
-													<input type="radio" name="state" value="presentado" checked> Presentado
+													<input type="radio" name="state" value="presentado" ng-model="state" ng-change="changeState(state)" ng-checked="true"> Presentado
 												</label>
 												<label class="radio-inline">
-													<input type="radio" name="state" value="en desarrollo"> En desarrollo
+													<input type="radio" name="state" value="en desarrollo" ng-model="state" ng-change="changeState(state)"> En desarrollo
 												</label>
 											</div>
 										</div>
-										<div class="form-group">
+										<div class="form-group" ng-hide="selectedState === 'en desarrollo'">
 											<label for="date" class="col-md-3 control-label">Fecha de presentación</label>
 											<div class="col-md-9">
 												<input type="date" name="date" class="form-control">
 											</div>
 										</div>
-										<div class="form-group">
+										<div class="form-group" ng-hide="selectedState === 'en desarrollo'">
 											<label for="mark" class="col-md-3 control-label">Calificación</label>
 											<div class="col-md-9">
-												<input type="number" name="mark" min="0" max="10" class="form-control">
+												<input type="text" name="mark" min="0" max="10" class="form-control">
 											</div>
 										</div>
 										<button type="submit" class="btn btn-info">Crear</button>
@@ -206,7 +207,7 @@
 									<h4 class="modal-title" id="modal-update-label">Actualizar proyecto</h4>
 								</div>
 								<div class="modal-body">
-									<form action="administracion.html" method="post" class="form-horizontal">
+									<form id="update" class="form-horizontal">
 										<div class="form-group">
 											<label for="key" class="col-md-2 control-label">Clave</label>
 											<div class="col-md-10">
@@ -272,7 +273,7 @@
 										<div class="form-group">
 											<label for="mark" class="col-md-3 control-label">Calificación</label>
 											<div class="col-md-9">
-												<input type="number" name="mark" class="form-control">
+												<input type="text" name="mark" class="form-control">
 											</div>
 										</div>
 										<button type="submit" class="btn btn-warning">Actualizar</button>
@@ -293,7 +294,7 @@
 									<h4 class="modal-title" id="modal-delete-label">Eliminar proyecto</h4>
 								</div>
 								<div class="modal-body">
-									<form action="administracion.html" method="post" class="form-horizontal">
+									<form id="delete" class="form-horizontal">
 										<div class="form-group">
 											<label for="key" class="col-md-2 control-label">Clave</label>
 											<div class="col-md-10">
