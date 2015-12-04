@@ -1,0 +1,104 @@
+#upper-section {
+	height: 300px;
+	background-image: url(../img/background-administracion.jpg);
+	background-size: cover;
+}
+
+#title {
+	text-transform: uppercase;
+	text-align: center;
+	margin-top: 40px;
+}
+
+#title h1 {
+	font-size: 40px;
+	color: #fff;
+}
+
+#main-section {
+	margin-bottom: 40px;
+}
+
+#block-container .iconic-information-block {
+	margin: 0 auto;
+	float: none;
+	background-color: #4cb547;
+	color: #fff;
+	text-transform: uppercase;
+}
+
+#actions-container {
+	margin-top: 40px;
+}
+
+#actions-header-container {
+	text-align: center;
+}
+
+#actions {
+	margin-top: 25px;
+}
+
+#actions .iconic-information-block {
+	border-radius: 50%;
+}
+
+.action-container {
+	margin: 0 auto;	
+	margin-bottom: 20px;
+}
+
+.action {
+	display: flex;
+	justify-content: center;
+	width: 150px;
+	height: 150px;
+	margin: 0 auto;
+	cursor: pointer;
+}
+
+.action.create {
+	background-color: #79dede;
+}
+
+.action.update {
+	background-color: #dec461;
+}
+
+.action.delete {
+	background-color: #de7872;
+}
+
+.action-inner-container {
+	align-self: center;
+}
+
+@media (min-width: 768px) {
+	#modal-create .modal-dialog, #modal-update .modal-dialog {
+		width: 800px;
+	}
+}
+
+.modal-header {
+	background-color: #4cb547;
+	color: #fff;
+}
+
+.close {
+	color: #fff;
+	opacity: 0.8;
+}
+
+.close:hover {
+	color: #fff;
+	opacity: 0.5;
+}
+
+.modal-body {
+	padding: 25px 60px;
+}
+
+.btn {
+	display: block;
+	margin: 0 auto;
+}

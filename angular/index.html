@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es" ng-app="GestionProyectos">
+<head>
+	<meta charset="UTF-8">
+	<title>Proyectos - Inicio</title>
+	<link rel="icon" href="img/logo.ico">
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+	<link rel="stylesheet" href="css/app.css">
+	<link rel="stylesheet" href="css/index.css">
+	<script src="js/jquery-2.1.4.js"></script>
+	<script src="js/angular.js"></script>
+	<script src="js/app.js"></script>
+	<script src="https://maps.googleapis.com/maps/api/js"></script>
+	<script src="js/map.js"></script>
+	<script src="js/bootstrap.js"></script>
+</head>
+<body ng-controller="IndexCtrl">
+	<section id="upper-section">
+		<div class="container mini-container">
+			<nav class="navbar navbar-default navbar-static-top">
+				<div class="container-fluid">
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+							<span class="sr-only">Cambiar navegación</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+						<a href="index.html" class="navbar-brand">
+							<img src="img/logo_white.png" alt="Logo">
+						</a>
+					</div>
+					<div id="navbar" class="navbar-collapse collapse navbar-right">
+						<ul class="nav navbar-nav">
+							<li class="active">
+								<a href="index.html">Inicio</a>
+							</li>
+							<li>
+								<a href="tfg.html">Proyectos</a>
+							</li>
+							<li>
+								<a href="profesores.html">Profesores</a>
+							</li>
+							<li>
+								<a href="contactar.html">Contacto</a>
+							</li>
+							<li>
+								<a href="administracion.html">Administración</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</nav>
+		</div>
+		
+		<div class="col-md-12">
+			<section id="logo-section">
+				<div class="row">
+					<div class="logo-container row">
+						<div class="container">
+							<h1>Gestión de proyectos</h1>
+							<h2>Universidad de Cádiz</h2>
+						</div>
+						<img src="img/logo_white.png" alt="Logo">
+					</div>
+				</div>
+			</section>
+		</div>
+	</section>
+
+	<section id="main-section">
+		<div class="container">
+			<section id="welcome" class="col-md-8">
+				<div class="row">
+					<div class="col-md-12">
+						<h1>¡Bienvenido!</h1>
+						<p>Explora nuestro sitio web para la gestión e información de Proyectos de Fin de Grado. Consulta toda la información que necesites sobre los proyectos, así como de los estudiantes y los profesores. Accede a nuestro panel de administrador para añadir o actualizar la información a lo más reciente. No dudes en contactar con nosotros.</p>
+						<p>¡Disfruta!</p>
+					</div>
+				</div>
+				<div class="row">
+					<a href="tfg.html">
+						<div id="projects-block" class="col-md-3 iconic-information-block">
+							<span class="glyphicon glyphicon-bookmark"></span>
+							<p>Proyectos</p>
+						</div>
+					</a>
+					<a href="profesores.html">
+						<div id="professors-block" class="col-md-3 iconic-information-block">
+							<span class="glyphicon glyphicon-user"></span>
+							<p>Profesores</p>
+						</div>
+					</a>
+					<a href="administracion.html">
+						<div id="admin-block" class="col-md-3 iconic-information-block">
+							<span class="glyphicon glyphicon-dashboard"></span>
+							<p>Administración</p>
+						</div>
+					</a>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<h2>¿Dónde nos puedes localizar?</h2>
+						<address>Nos encontramos en la Escuela Superior de Ingeniería de la Universidad de Cádiz. Avenida Universidad de Cadiz, 10, 11519 Puerto Real, Cádiz.</address>
+						<div id="map"></div>
+					</div>
+				</div>
+			</section>
+			<section id="aside" class="col-md-4">
+				<aside id="news">
+
+					<h3 class="aside-header">Noticias destacadas</h3>
+					<ul class="list-unstyled">
+						<li ng-repeat="project in projects"><strong>{{ project.title }}</strong>, por {{ project.studentName }}</li>
+					</ul>
+				</aside>
+				<aside id="dates">
+					<h3 class="aside-header">Fechas importantes</h3>
+					<ul class="list-unstyled">
+						<li><strong>III Taller de Drupal</strong>, 3/12/2015</li>
+						<li><strong>V Conferencia de Programación Orientada a Objetos</strong>, 16/11/2015</li>
+						<li><strong>XI Hackathon Cádiz</strong>, 9/11/2015</li>
+					</ul>
+				</aside>
+			</section>
+		</div>
+	</section>
+
+	<div class="clearfix"></div>
+	
+	<footer>
+		<div class="col-md-12">
+			<p>&copy; 2015 Pablo Antonio García Chacón</p>
+			<a href="mailto:pabloantonio.garciachacon@alum.uca.es">pabloantonio.garciachacon@alum.uca.es</a>
+		</div>
+		<div class="col-md-12">
+			<img src="img/logo.png" alt="Logo">
+		</div>
+	</footer>
+</body>
+</html>
