@@ -303,6 +303,24 @@ app.controller('AdminCtrl', function($scope, ws) {
 		}
 	}
 
+	$scope.submitSearchForm = function(form) {
+		if (form.$valid) {
+			ws.getSearchStudent($scope.key).then(function(data) {
+				if (!data || data.length === 0) {
+					$scope.error = "No existe un estudiante con esa clave";
+				} else {
+					$scope.resultSearch = data;
+					$scope.success = "Se ha encontrado el proyecto";
+
+					$scope.key = null;
+					$scope.error = null;
+					$scope.search.$setPristine();
+					$scope.search.$setUntouched();
+				}
+			});
+		}
+	}
+
 	$scope.reset = function(form) {
 		$scope.project = {
 			name: "",
@@ -327,6 +345,7 @@ app.controller('AdminCtrl', function($scope, ws) {
 		$scope.success = null;
 		$scope.resultProject = null;
 		$scope.resultDelete = null;
+		$scope.resultSearch = null;
 	}
 		
 	$scope.changeState = function(state) {
@@ -381,6 +400,12 @@ app.factory('ws', function($http, $q) {
 		deleteStudent: function(key) {
 			var url = full_path + delete_estudiante_path + "/" + key;
 			return $http.delete(url).then(function(response) {
+				return response.data;
+			});
+		},
+		getSearchStudent: function(key) {
+			var url = full_path + get_estudiante_path + "/" + key;
+			return $http.get(url).then(function(response) {
 				return response.data;
 			});
 		}

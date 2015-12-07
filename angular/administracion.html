@@ -394,18 +394,30 @@
 									</button>
 									<h4 class="modal-title" id="modal-search-label">Buscar proyecto</h4>
 								</div>
+								<div ng-hide="!error || error.length === 0" class="modal-error">
+									<h4 class="modal-title">{{ error }}</h4>
+								</div>
 								<div class="modal-body">
-									<form id="search" class="form-horizontal">
+									<form ng-hide="resultSearch" id="search" name="search" ng-submit="submitSearchForm(search)" class="form-horizontal" novalidate>
 										<div class="form-group">
 											<label for="key" class="col-md-2 control-label">Clave</label>
 											<div class="col-md-10">
-												<input required type="text" name="key" class="form-control" placeholder="Clave del estudiante">
+												<input required type="text" ng-model="key" name="key" class="form-control" placeholder="Clave del estudiante">
+												<div ng-show="search.$submitted || search.key.$touched">
+													<span class="help-block" ng-show="search.key.$error.required">Introduce la clave de estudiante</span>
+												</div>
 											</div>
 										</div>
 										<div class="button-container">
 											<button type="submit" class="btn button-search">Buscar</button>
 										</div>
 									</form>
+									<div ng-show="resultSearch" class="small-container result">
+										<div ng-show="success" class="info">
+											<div class="alert alert-success" role="alert">{{ success }}</div>
+											<p><strong>Detalles del proyecto: </strong>{{ resultSearch }}</p>
+										</div>
+									</div>
 								</div>
 							</div>
 						</div>
