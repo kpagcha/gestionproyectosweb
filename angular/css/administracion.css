@@ -84,6 +84,20 @@
 	color: #fff;
 }
 
+.modal-error {
+	position: absolute;
+	top: 0;
+	left: 0;
+	padding: 15px;
+	background-color: #de423b;
+	color: #fff;
+	width: 100%;
+}
+
+.modal-error span {
+	text-align: center;
+}
+
 .close {
 	color: #fff;
 	opacity: 0.8;
@@ -98,7 +112,48 @@
 	padding: 25px 60px;
 }
 
-.btn {
-	display: block;
+.button-container {
+	text-align: center;
+}
+
+.button-container button {
+	margin: 5px;
+	min-width: 110px;
+}
+
+form.ng-submitted .ng-valid, .ng-valid.ng-touched {
+	border-color: #3c763d;
+	-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+	box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+}
+
+form.ng-submitted .ng-valid:focus, .ng-valid.ng-touched:focus {
+	border-color: #2b542c;
+	-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 6px #67b168;
+	box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 6px #67b168;
+}
+
+form.ng-submitted .ng-invalid, .ng-invalid.ng-touched {
+	border-color: #a94442;
+	-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+	box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+}
+
+form.ng-submitted .ng-invalid:focus, .ng-invalid.ng-touched:focus {
+	border-color: #843534;
+	-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 6px #ce8483;
+	box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 6px #ce8483;
+}
+
+.help-block {
+	color: #a94442;
+}
+
+.info {
+	text-align: center;
 	margin: 0 auto;
+}
+
+.info .alert {
+	width: 100%;
 }

@@ -205,24 +205,54 @@ app.controller('ProfessorsCtrl', function($scope, ws) {
 
 app.controller('AdminCtrl', function($scope, ws) {
 
-	$scope.submitCreateForm = function() {
-		var params = {
-			"nombre": $("#create input:text[name='name']").val(),
-			"primerApellido": $("#create input:text[name='firstLastName']").val(),
-			"segundoApellido": $("#create input:text[name='secondLastName']").val(),
-			"tituloProyecto": $("#create input:text[name='title']").val(),
-			"tutor1": $("#create input:text[name='tutor']").val(),
-			"tutor2": $("#create input:text[name='cotutor']").val(),
-			"estadoProyecto": $("#create input:radio[name='state']").val(),
-			"fechaPresentacionProyecto": dateFormat($("#create input[type='date'][name='date']").val(), "dd-mm-yyyy"),
-			"calificacionProyecto": $("#create input:text[name='mark']").val()
-		};
-
-		ws.postCreateStudent(params).then(function (data) {
-			alert(JSON.stringify(data));
-		});
+	$scope.project = {
+		state: "presentado",
+		topic: "Domótica"
 	};
 
+	$scope.today = new Date();
+
+	$scope.submitCreateForm = function(form) {
+		var project = $scope.project;
+		var params = {
+			"nombre": project.name,
+			"primerApellido": project.firstLastName,
+			"segundoApellido": project.secondLastName,
+			"tituloProyecto": project.title,
+			"tutor1": project.tutor,
+			"tutor2": project.cotutor,
+			"estadoProyecto": project.state,
+			"fechaPresentacionProyecto": dateFormat(project.date, "dd-mm-yyyy"),
+			"calificacionProyecto": project.mark
+		};
+
+		if (form.$valid) {
+			ws.postCreateStudent(params).then(function (data) {
+				if (!data || data.length === 0) {
+					$scope.error = "Ha habido un problema en el servidor";
+				} else {
+					$scope.success = "Se ha creado el proyecto \"" + data.tituloProyecto + "\" con éxito";
+					$scope.resetProject();
+					$("#modal-create").modal("hide");
+				}
+			});
+		}
+	};
+
+	$scope.resetProject = function() {
+		$scope.project = {
+			state: "presentado",
+			topic: "Domótica"
+		};
+		$("#create input[type='email']").val('');
+		$("#create input[type='date']").val('');
+		$scope.selectedState = $scope.project.state;
+		$scope.create.$setUntouched();
+	}
+
+	$scope.resetErrors = function() {
+		$scope.error = null;
+	}
 		
 	$scope.changeState = function(state) {
 		$scope.selectedState = state;
@@ -258,7 +288,7 @@ app.factory('ws', function($http, $q) {
 			var url = full_path + create_estudiante_path;
 			var data = JSON.stringify(params);
 			return $http.post(url, data).then(function(response) {
-				return response.data
+				return response.data;
 			});
 		}
 	}
