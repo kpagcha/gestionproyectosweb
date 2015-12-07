@@ -42,6 +42,10 @@
 	margin-bottom: 15px;
 }
 
+#welcome a {
+	text-decoration: none;
+}
+
 .iconic-information-block {
 	margin: 0px 5px 25px 5px;
 	color: #eee;

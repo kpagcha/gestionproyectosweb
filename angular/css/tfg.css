@@ -60,6 +60,7 @@
 	width: 70%;
 	margin-top: 25%;
 	margin-bottom: 25%;
+	max-width: 200px;
 }
 
 #projects-section .panel-footer {
