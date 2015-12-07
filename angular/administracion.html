@@ -208,7 +208,7 @@
 													<input type="radio" name="state" value="presentado" ng-model="project.state" ng-change="changeState(project.state)"> Presentado
 												</label>
 												<label class="radio-inline">
-													<input type="radio" name="state" value="en desarrollo" ng-model="project.state" ng-change="changeState(project.state)"> En desarrollo
+													<input type="radio" name="state" value="en desarrollo" ng-model="project.state" ng-change="changeState(project.state)" ng-click="clearPresentedAttributes()"> En desarrollo
 												</label>
 											</div>
 										</div>
@@ -236,9 +236,8 @@
 										</div>
 									</form>
 									<div ng-show="resultProject" class="small-container result">
-										<div ng-show="success || failure" class="info">
-											<div ng-show="success" class="alert alert-success" role="alert">{{ success }}</div>
-											<div ng-show="failure" class="alert alert-danger" role="alert">{{ failure }}</div>
+										<div ng-show="success" class="info">
+											<div class="alert alert-success" role="alert">{{ success }}</div>
 										</div>
 										<div class="row">
 											<hr>
@@ -298,7 +297,7 @@
 													<input type="radio" name="state" value="presentado" ng-model="project.state" ng-change="changeState(project.state)"> Presentado
 												</label>
 												<label class="radio-inline">
-													<input type="radio" name="state" value="en desarrollo" ng-model="project.state" ng-change="changeState(project.state)"> En desarrollo
+													<input type="radio" name="state" value="en desarrollo" ng-model="project.state" ng-change="changeState(project.state)" ng-click="clearPresentedAttributes()"> En desarrollo
 												</label>
 											</div>
 										</div>
@@ -326,9 +325,8 @@
 										</div>
 									</form>
 									<div ng-show="resultProject" class="small-container result">
-										<div ng-show="success || failure" class="info">
-											<div ng-show="success" class="alert alert-success" role="alert">{{ success }}</div>
-											<div ng-show="failure" class="alert alert-danger" role="alert">{{ failure }}</div>
+										<div ng-show="success" class="info">
+											<div class="alert alert-success" role="alert">{{ success }}</div>
 										</div>
 										<div class="row">
 											<hr>
@@ -358,18 +356,29 @@
 									</button>
 									<h4 class="modal-title" id="modal-delete-label">Eliminar proyecto</h4>
 								</div>
+								<div ng-hide="!error || error.length === 0" class="modal-error">
+									<h4 class="modal-title">{{ error }}</h4>
+								</div>
 								<div class="modal-body">
-									<form id="delete" class="form-horizontal">
+									<form ng-hide="resultDelete" id="delete" name="delete" ng-submit="submitDeleteForm(delete)" class="form-horizontal" novalidate>
 										<div class="form-group">
 											<label for="key" class="col-md-2 control-label">Clave</label>
 											<div class="col-md-10">
-												<input required type="text" name="key" class="form-control" placeholder="Clave del estudiante">
+												<input required type="text" ng-model="key" name="key" class="form-control" placeholder="Clave del estudiante">
+												<div ng-show="delete.$submitted || delete.key.$touched">
+													<span class="help-block" ng-show="delete.key.$error.required">Introduce la clave de estudiante</span>
+												</div>
 											</div>
 										</div>
 										<div class="button-container">
 											<button type="submit" class="btn btn-danger">Eliminar</button>
 										</div>
 									</form>
+									<div ng-show="resultDelete" class="small-container result">
+										<div ng-show="success" class="info">
+											<div class="alert alert-success" role="alert">{{ success }}</div>
+										</div>
+									</div>
 								</div>
 							</div>
 						</div>

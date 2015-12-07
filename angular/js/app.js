@@ -233,6 +233,7 @@ app.controller('AdminCtrl', function($scope, ws) {
 					$scope.error = "Ha habido un problema en el servidor";
 				} else {
 					$scope.success = "Se ha creado el proyecto con éxito";
+					$scope.error = null;
 					$scope.reset($scope.create);
 
 					$scope.resultProject = {};
@@ -263,9 +264,10 @@ app.controller('AdminCtrl', function($scope, ws) {
 		if (form.$valid) {
 			ws.putUpdateStudent(key, params).then(function(data) {
 				if (!data || data.length === 0) {
-					$scope.error = "Ha habido un problema en el servidor";
+					$scope.error = "No existe un estudiante con esa clave";
 				} else {
 					$scope.success = "Se ha actualizado el proyecto con éxito";
+					$scope.error = null;
 					$scope.reset($scope.update);
 
 					$scope.resultProject = {};
@@ -278,6 +280,24 @@ app.controller('AdminCtrl', function($scope, ws) {
 						"date": data.fechaPresentacionProyecto,
 						"mark": data.calificacionProyecto
 					};
+				}
+			});
+		}
+	}
+
+	$scope.submitDeleteForm = function(form) {
+		if (form.$valid) {
+			ws.deleteStudent($scope.key).then(function(data) {
+				if (data === true) {
+					$scope.resultDelete = true;
+					$scope.success = "Se ha eliminado el proyecto con éxito";
+
+					$scope.key = null;
+					$scope.error = null;
+					$scope.delete.$setPristine();
+					$scope.delete.$setUntouched();
+				} else {
+					$scope.error = "No existe un estudiante con esa clave";
 				}
 			});
 		}
@@ -304,12 +324,19 @@ app.controller('AdminCtrl', function($scope, ws) {
 
 	$scope.resetFormState = function() {
 		$scope.error = null;
+		$scope.success = null;
 		$scope.resultProject = null;
+		$scope.resultDelete = null;
 	}
 		
 	$scope.changeState = function(state) {
 		$scope.selectedState = state;
 	};
+
+	$scope.clearPresentedAttributes = function() {
+		$scope.project.date = null;
+		$scope.project.mark = null;
+	}
 });
 
 app.config(['$httpProvider', function($httpProvider) {
@@ -348,6 +375,12 @@ app.factory('ws', function($http, $q) {
 			var url = full_path + update_estudiante_path + "/" + key;
 			var data = JSON.stringify(json);
 			return $http.put(url, data).then(function(response) {
+				return response.data;
+			});
+		},
+		deleteStudent: function(key) {
+			var url = full_path + delete_estudiante_path + "/" + key;
+			return $http.delete(url).then(function(response) {
 				return response.data;
 			});
 		}
