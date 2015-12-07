@@ -70,36 +70,40 @@
 			</div>
 			<div class="row">
 				<section id="actions-container">
-					<div ng-show="success || failure" class="mini-container info">
-						<div ng-show="success" class="alert alert-success" role="alert">{{ success }}</div>
-						<div ng-show="failure" class="alert alert-danger" role="alert">{{ failure }}</div>
-					</div>
 					<div id="actions-header-container">
 						<h1>Elige qué acción quieres realizar</h1>
 						<p>Con el panel de administración puedes crear un nuevo proyecto, modificar uno existente, o eliminarlo.</p>
 					</div>
-					<div id="actions" class="container mini-container">
-						<div class="action-container col-md-4">
-							<div class="iconic-information-block action create" data-toggle="modal" data-target="#modal-create" ng-click="resetErrors()">
+					<div id="actions" class="container small-container">
+						<div class="action-container col-md-3 col-sm-6">
+							<div class="iconic-information-block action create" data-toggle="modal" data-target="#modal-create" ng-click="resetFormState()">
 								<div class="action-inner-container">
 									<span class="glyphicon glyphicon-ok"></span>
 									<p>Crear</p>
 								</div>
 							</div>
 						</div>
-						<div class="action-container col-md-4">
-							<div class="iconic-information-block action update" data-toggle="modal" data-target="#modal-update">
+						<div class="action-container col-md-3 col-sm-6">
+							<div class="iconic-information-block action update" data-toggle="modal" data-target="#modal-update" ng-click="resetFormState()">
 								<div class="action-inner-container">
 									<span class="glyphicon glyphicon-refresh"></span>
 									<p>Actualizar</p>
 								</div>
 							</div>
 						</div>
-						<div class="action-container col-md-4">
-							<div class="iconic-information-block action delete" data-toggle="modal" data-target="#modal-delete">
+						<div class="action-container col-md-3 col-sm-6">
+							<div class="iconic-information-block action delete" data-toggle="modal" data-target="#modal-delete" ng-click="resetFormState()">
 								<div class="action-inner-container">
 									<span class="glyphicon glyphicon-remove"></span>
 									<p>Eliminar</p>
+								</div>
+							</div>
+						</div>
+						<div class="action-container col-md-3 col-sm-6">
+							<div class="iconic-information-block action search" data-toggle="modal" data-target="#modal-search" ng-click="resetFormState()">
+								<div class="action-inner-container">
+									<span class="glyphicon glyphicon-remove"></span>
+									<p>Buscar</p>
 								</div>
 							</div>
 						</div>
@@ -119,7 +123,7 @@
 									<h4 class="modal-title">{{ error }}</h4>
 								</div>
 								<div class="modal-body">
-									<form id="create" name="create" ng-submit="submitCreateForm(create)" class="form-horizontal" novalidate>
+									<form ng-hide="resultProject" id="create" name="create" ng-submit="submitCreateForm(create)" class="form-horizontal" novalidate>
 										<div class="form-group">
 											<label for="name" class="col-md-3 control-label">Nombre</label>
 											<div class="col-md-9">
@@ -227,10 +231,28 @@
 											</div>
 										</div>
 										<div class="button-container">
-											<button type="button" class="btn btn-default" ng-click="resetProject()">Restablecer</button>
+											<button type="button" class="btn btn-default" ng-click="reset(create)">Restablecer</button>
 											<button type="submit" class="btn btn-info">Crear</button>
 										</div>
 									</form>
+									<div ng-show="resultProject" class="small-container result">
+										<div ng-show="success || failure" class="info">
+											<div ng-show="success" class="alert alert-success" role="alert">{{ success }}</div>
+											<div ng-show="failure" class="alert alert-danger" role="alert">{{ failure }}</div>
+										</div>
+										<div class="row">
+											<hr>
+										</div>
+										<div class="row">
+											<p><strong>Título: </strong>{{ resultProject.title }}</p>
+											<p><strong>Autor: </strong>{{ resultProject.studentName }}</p>
+											<p><strong>Tutores: </strong>{{ resultProject.tutor }} <span ng-hide="!resultProject.cotutor || resultProject.cotutor.length === 0">y {{ resultProject.cotutor }}</span></p>
+											<hr>
+											<p><strong>Estado del proyecto: </strong>{{ resultProject.state }}</p>
+											<p ng-hide="!resultProject.date || resultProject.date.length === 0"><strong>Fecha de presentación: </strong>{{ resultProject.date }}</p>
+											<p ng-hide="!resultProject.mark || resultProject.mark.length === 0"><strong>Calificación: </strong>{{ resultProject.mark }}</p>
+										</div>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -246,78 +268,81 @@
 									</button>
 									<h4 class="modal-title" id="modal-update-label">Actualizar proyecto</h4>
 								</div>
+								<div ng-hide="!error || error.length === 0" class="modal-error">
+									<h4 class="modal-title">{{ error }}</h4>
+								</div>
 								<div class="modal-body">
-									<form id="update" class="form-horizontal">
+									<form ng-hide="resultProject" id="update" name="update" ng-submit="submitUpdateForm(update)" class="form-horizontal" novalidate>
 										<div class="form-group">
 											<label for="key" class="col-md-2 control-label">Clave</label>
 											<div class="col-md-10">
-												<input required type="text" name="key" class="form-control" placeholder="Clave del estudiante">
+												<input required type="text" ng-model="project.key" name="key" class="form-control" placeholder="Clave del estudiante">
+												<div ng-show="update.$submitted || update.key.$touched">
+													<span class="help-block" ng-show="update.key.$error.required">Introduce la clave de estudiante</span>
+												</div>
 											</div>
 										</div>
-											<div class="row">
-												<hr>
-											</div>
-										<div class="form-group">
-											<label for="name" class="col-md-3 control-label">Nombre</label>
-											<div class="col-md-9">
-												<input required type="text" name="name" class="form-control">
-											</div>
-										</div>
-										<div class="form-group">
-											<label for="firstLastName" class="col-md-3 control-label">Primer apellido</label>
-											<div class="col-md-9">
-												<input required type="text" name="firstLastName" class="form-control">
-											</div>
-										</div>
-										<div class="form-group">
-											<label for="secondLastName" class="col-md-3 control-label">Segundo apellido</label>
-											<div class="col-md-9">
-												<input type="text" name="secondLastName" class="form-control">
-											</div>
+										<div class="row">
+											<hr>
 										</div>
 										<div class="form-group">
 											<label for="title" class="col-md-3 control-label">Título del proyecto</label>
 											<div class="col-md-9">
-												<input required type="text" name="title" class="form-control">
-											</div>
-										</div>
-										<div class="form-group">
-											<label for="tutor" class="col-md-3 control-label">Tutor</label>
-											<div class="col-md-9">
-												<input required type="text" name="tutor" class="form-control">
-											</div>
-										</div>
-										<div class="form-group">
-											<label for="cotutor" class="col-md-3 control-label">Cotutor</label>
-											<div class="col-md-9">
-												<input type="text" name="cotutor" class="form-control">
+												<input type="text" ng-model="project.title" name="title" class="form-control">
 											</div>
 										</div>
 										<div class="form-group">
 											<label for="state" class="col-md-3 control-label">Estado del proyecto</label>
 											<div class="col-md-9">
 												<label class="radio-inline">
-													<input type="radio" name="state" value="presentado" checked> Presentado
+													<input type="radio" name="state" value="presentado" ng-model="project.state" ng-change="changeState(project.state)"> Presentado
 												</label>
 												<label class="radio-inline">
-													<input type="radio" name="state" value="en desarrollo"> En desarrollo
+													<input type="radio" name="state" value="en desarrollo" ng-model="project.state" ng-change="changeState(project.state)"> En desarrollo
 												</label>
 											</div>
 										</div>
-										<div class="form-group">
+										<div class="form-group" ng-hide="selectedState === 'en desarrollo'">
 											<label for="date" class="col-md-3 control-label">Fecha de presentación</label>
 											<div class="col-md-9">
-												<input type="date" name="date" class="form-control">
+												<input type="date" ng-model="project.date" name="date" class="form-control" max="{{ today }}">
+											</div>
+											<div ng-show="update.$submitted || update.date.$touched">
+												<span class="help-block" ng-show="update.date.$error.max">La fecha no puede ser mayor que la actual</span>
 											</div>
 										</div>
-										<div class="form-group">
+										<div class="form-group" ng-hide="selectedState === 'en desarrollo'">
 											<label for="mark" class="col-md-3 control-label">Calificación</label>
 											<div class="col-md-9">
-												<input type="text" name="mark" class="form-control">
+												<input type="number" ng-model="project.mark" name="mark" min="0" max="10" class="form-control">
+												<div ng-show="update.$submitted || update.mark.$touched">
+													<span class="help-block" ng-show="update.mark.$error.min || update.mark.$error.max">La calificación debe tener un valor entre 0 y 10</span>
+												</div>
 											</div>
 										</div>
-										<button type="submit" class="btn btn-warning">Actualizar</button>
+										<div class="button-container">
+											<button type="button" class="btn btn-default" ng-click="reset(update)">Restablecer</button>
+											<button type="submit" class="btn btn-warning">Actualizar</button>
+										</div>
 									</form>
+									<div ng-show="resultProject" class="small-container result">
+										<div ng-show="success || failure" class="info">
+											<div ng-show="success" class="alert alert-success" role="alert">{{ success }}</div>
+											<div ng-show="failure" class="alert alert-danger" role="alert">{{ failure }}</div>
+										</div>
+										<div class="row">
+											<hr>
+										</div>
+										<div class="row">
+											<p><strong>Título: </strong>{{ resultProject.title }}</p>
+											<p><strong>Autor: </strong>{{ resultProject.studentName }}</p>
+											<p><strong>Tutores: </strong>{{ resultProject.tutor }} <span ng-hide="!resultProject.cotutor || resultProject.cotutor.length === 0">y {{ resultProject.cotutor }}</span></p>
+											<hr>
+											<p><strong>Estado del proyecto: </strong>{{ resultProject.state }}</p>
+											<p ng-hide="!resultProject.date || resultProject.date.length === 0"><strong>Fecha de presentación: </strong>{{ resultProject.date }}</p>
+											<p ng-hide="!resultProject.mark || resultProject.mark.length === 0"><strong>Calificación: </strong>{{ resultProject.mark }}</p>
+										</div>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -341,7 +366,36 @@
 												<input required type="text" name="key" class="form-control" placeholder="Clave del estudiante">
 											</div>
 										</div>
-										<button type="submit" class="btn btn-danger">Eliminar</button>
+										<div class="button-container">
+											<button type="submit" class="btn btn-danger">Eliminar</button>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+				<section id="modal-search-container">
+					<div class="modal fade" id="modal-search" role="dialog" aria-labelledby="modal-search-label">
+						<div class="modal-dialog" role="dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+										<span aria-hidden="true">&times;</span>
+									</button>
+									<h4 class="modal-title" id="modal-search-label">Buscar proyecto</h4>
+								</div>
+								<div class="modal-body">
+									<form id="search" class="form-horizontal">
+										<div class="form-group">
+											<label for="key" class="col-md-2 control-label">Clave</label>
+											<div class="col-md-10">
+												<input required type="text" name="key" class="form-control" placeholder="Clave del estudiante">
+											</div>
+										</div>
+										<div class="button-container">
+											<button type="submit" class="btn button-search">Buscar</button>
+										</div>
 									</form>
 								</div>
 							</div>

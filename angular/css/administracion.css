@@ -69,8 +69,16 @@
 	background-color: #de7872;
 }
 
+.action.search {
+	background-color: #daaae4;
+}
+
 .action-inner-container {
 	align-self: center;
+}
+
+#main-section .modal {
+	overflow-y: scroll;
 }
 
 @media (min-width: 768px) {
@@ -121,6 +129,17 @@
 	min-width: 110px;
 }
 
+.button-search {
+	background-color: #daaae4;
+	border-color: #c293c9;
+	color: #fff;
+}
+
+.button-search:hover {
+	background-color: #c293c9;
+	color: #fff;
+}
+
 form.ng-submitted .ng-valid, .ng-valid.ng-touched {
 	border-color: #3c763d;
 	-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
@@ -156,4 +175,9 @@ form.ng-submitted .ng-invalid:focus, .ng-invalid.ng-touched:focus {
 
 .info .alert {
 	width: 100%;
+}
+
+.result {
+	margin: 0 auto;
+	text-align: center;
 }

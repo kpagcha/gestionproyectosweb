@@ -120,12 +120,12 @@ app.controller('ProfessorsCtrl', function($scope, ws) {
 		];
 
 		$.each(professorsTmp, function(key, professor) {
-			var d1 = randomInt(0, 9).toString();
-			var d2 = randomInt(0, 9).toString();
-
 			if (professor in professors)
 				professors[professor]["count"] = professors[professor]["count"] + 1;
 			else {
+				var d1 = randomInt(0, 9).toString();
+				var d2 = randomInt(0, 9).toString();
+
 				professors[professor] = {};
 
 				professors[professor] = {
@@ -136,18 +136,18 @@ app.controller('ProfessorsCtrl', function($scope, ws) {
 					"email": buildEmail(professor),
 					"count": 1
 				};
+
+				var avatar = "avatar-?.png";
+				var rnd = randomInt(1, 14);
+				if (rnd < 10) avatar = avatar.replace("?", "0" + rnd);
+				else avatar = avatar.replace("?", rnd);
+
+				profiles.push({
+					"name": professor,
+					"img": avatar,
+					"description": "Foto de " + professor
+				});
 			}
-
-			var avatar = "avatar-?.png";
-			var rnd = randomInt(1, 14);
-			if (rnd < 10) avatar = avatar.replace("?", "0" + rnd);
-			else avatar = avatar.replace("?", rnd);
-
-			profiles.push({
-				"name": professor,
-				"img": avatar,
-				"description": "Foto de " + professor
-			});
 		});
 
 		var projectParticipation = new Array();
@@ -158,6 +158,7 @@ app.controller('ProfessorsCtrl', function($scope, ws) {
 				projectCount: professor["count"]
 			});
 		});
+
 		projectParticipation = projectParticipation.sort(function (a, b) {
 			a = a.projectCount;
 			b = b.projectCount;
@@ -222,36 +223,88 @@ app.controller('AdminCtrl', function($scope, ws) {
 			"tutor1": project.tutor,
 			"tutor2": project.cotutor,
 			"estadoProyecto": project.state,
-			"fechaPresentacionProyecto": dateFormat(project.date, "dd-mm-yyyy"),
+			"fechaPresentacionProyecto": project.date ? dateFormat(project.date, "dd-mm-yyyy") : "",
 			"calificacionProyecto": project.mark
 		};
 
 		if (form.$valid) {
-			ws.postCreateStudent(params).then(function (data) {
+			ws.postCreateStudent(params).then(function(data) {
 				if (!data || data.length === 0) {
 					$scope.error = "Ha habido un problema en el servidor";
 				} else {
-					$scope.success = "Se ha creado el proyecto \"" + data.tituloProyecto + "\" con éxito";
-					$scope.resetProject();
-					$("#modal-create").modal("hide");
+					$scope.success = "Se ha creado el proyecto con éxito";
+					$scope.reset($scope.create);
+
+					$scope.resultProject = {};
+					$scope.resultProject = {
+						"studentName": (data.nombre + " " + data.primerApellido + " " + data.segundoApellido).trim(),
+						"title": data.tituloProyecto,
+						"tutor": data.tutor1,
+						"cotutor": data.tutor2,
+						"state": data.estadoProyecto.charAt(0).toUpperCase() + data.estadoProyecto.slice(1),
+						"date": data.fechaPresentacionProyecto,
+						"mark": data.calificacionProyecto
+					};
 				}
 			});
 		}
 	};
 
-	$scope.resetProject = function() {
-		$scope.project = {
-			state: "presentado",
-			topic: "Domótica"
+	$scope.submitUpdateForm = function(form) {
+		var project = $scope.project;
+		var key = project.key;
+		var params = {
+			"tituloProyecto": project.title,
+			"estadoProyecto": project.state,
+			"fechaPresentacionProyecto": project.date ? dateFormat(project.date, "dd-mm-yyyy") : "",
+			"calificacionProyecto": project.mark
 		};
-		$("#create input[type='email']").val('');
-		$("#create input[type='date']").val('');
-		$scope.selectedState = $scope.project.state;
-		$scope.create.$setUntouched();
+
+		if (form.$valid) {
+			ws.putUpdateStudent(key, params).then(function(data) {
+				if (!data || data.length === 0) {
+					$scope.error = "Ha habido un problema en el servidor";
+				} else {
+					$scope.success = "Se ha actualizado el proyecto con éxito";
+					$scope.reset($scope.update);
+
+					$scope.resultProject = {};
+					$scope.resultProject = {
+						"studentName": (data.nombre + " " + data.primerApellido + " " + data.segundoApellido).trim(),
+						"title": data.tituloProyecto,
+						"tutor": data.tutor1,
+						"cotutor": data.tutor2,
+						"state": data.estadoProyecto.charAt(0).toUpperCase() + data.estadoProyecto.slice(1),
+						"date": data.fechaPresentacionProyecto,
+						"mark": data.calificacionProyecto
+					};
+				}
+			});
+		}
 	}
 
-	$scope.resetErrors = function() {
+	$scope.reset = function(form) {
+		$scope.project = {
+			name: "",
+			firstLastName: "",
+			secondLastName: "",
+			email: "",
+			title: "",
+			topic: "Domótica",
+			tutor: "",
+			cotutor: "",
+			state: "presentado",
+			date: "",
+			mark: ""
+		};
+		$scope.selectedState = $scope.project.state;
+		form.$setPristine();
+		form.$setUntouched();
+	}
+
+	$scope.resetFormState = function() {
 		$scope.error = null;
+		$scope.resultProject = null;
 	}
 		
 	$scope.changeState = function(state) {
@@ -284,10 +337,17 @@ app.factory('ws', function($http, $q) {
 				return response.data;
 			});
 		},
-		postCreateStudent: function(params) {
+		postCreateStudent: function(json) {
 			var url = full_path + create_estudiante_path;
-			var data = JSON.stringify(params);
+			var data = JSON.stringify(json);
 			return $http.post(url, data).then(function(response) {
+				return response.data;
+			});
+		},
+		putUpdateStudent: function(key, json) {
+			var url = full_path + update_estudiante_path + "/" + key;
+			var data = JSON.stringify(json);
+			return $http.put(url, data).then(function(response) {
 				return response.data;
 			});
 		}
