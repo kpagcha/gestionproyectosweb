@@ -292,10 +292,7 @@ app.controller('AdminCtrl', function($scope, ws) {
 					$scope.resultDelete = true;
 					$scope.success = "Se ha eliminado el proyecto con éxito";
 
-					$scope.key = null;
 					$scope.error = null;
-					$scope.delete.$setPristine();
-					$scope.delete.$setUntouched();
 				} else {
 					$scope.error = "No existe un estudiante con esa clave";
 				}
@@ -312,10 +309,7 @@ app.controller('AdminCtrl', function($scope, ws) {
 					$scope.resultSearch = data;
 					$scope.success = "Se ha encontrado el proyecto";
 
-					$scope.key = null;
 					$scope.error = null;
-					$scope.search.$setPristine();
-					$scope.search.$setUntouched();
 				}
 			});
 		}
@@ -341,11 +335,18 @@ app.controller('AdminCtrl', function($scope, ws) {
 	}
 
 	$scope.resetFormState = function() {
+		$scope.reset($scope.create);
+		$scope.reset($scope.update);
+		$scope.delete.$setPristine();
+		$scope.delete.$setUntouched();
+		$scope.search.$setPristine();
+		$scope.search.$setUntouched();
 		$scope.error = null;
 		$scope.success = null;
 		$scope.resultProject = null;
 		$scope.resultDelete = null;
 		$scope.resultSearch = null;
+		$scope.key = null;
 	}
 		
 	$scope.changeState = function(state) {
