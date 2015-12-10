@@ -368,15 +368,9 @@ app.directive('emailUca', function() {
 					return true;
 				}
 				
-				var atPos = viewValue.indexOf("@");
-				if (atPos > -1) {
-					var uca = "uca.es";
-					var domain = viewValue.substr(atPos + 1);
-					var pos = domain.indexOf(uca);
-					
-					if (pos > -1 && pos == domain.length - uca.length) {
-						return true;
-					}
+				var pos = viewValue.indexOf("@alum.uca.es");
+				if (pos > -1 && pos == viewValue.length - "@alum.uca.es".length) {
+					return true;
 				}
 
 				return false;
