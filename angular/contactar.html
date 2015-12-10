@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+	<meta name="description" content="Contacto con los administradores del sitio">
 	<meta charset="UTF-8">
 	<title>Proyectos - Contacto</title>
 	<link rel="icon" href="img/logo.ico">
@@ -65,18 +66,18 @@
 		<div class="container">
 			<div class="col-md-8">
 				<section id="contact">
-					<h1>Cómo contactar</h1>
+					<h2>Cómo contactar</h2>
 					<p>Puedes enviar un correo a la dirección <a href="mailto:pabloantonio.garciachacon@alum.uca.es">pabloantonio.garciachacon@alum.uca.es</a> o rellenar y enviar el siguiente formulario.</p>
 					<form action="contactar.html" method="post">
 						<fieldset>
 							<legend>Envía un mensaje</legend>
 							<div class="form-group">
 								<label for="subject">Asunto</label>
-								<input type="text" class="form-control"><br>
+								<input type="text" id="subject" name="subject" class="form-control"><br>
 							</div>
 							<div class="form-group">
 								<label for="body">Cuerpo</label>
-								<textarea name="body" class="form-control" cols="30" rows="10"></textarea>
+								<textarea id="body" name="body" class="form-control" cols="30" rows="10"></textarea>
 							</div>
 							<button type="submit" class="btn btn-primary btn-lg">
 								<span class="glyphicon glyphicon-envelope"></span>

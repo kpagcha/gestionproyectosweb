@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="es" ng-app="GestionProyectos">
 <head>
+	<meta name="description" content="Información de los Proyectos de Fin de Grado">
 	<meta charset="UTF-8">
 	<title>Proyectos - Proyectos</title>
 	<link rel="icon" href="img/logo.ico">
@@ -90,7 +91,7 @@
 									<p ng-hide="!project.date || project.date.length === 0"><strong>Fecha de presentación: </strong>{{ project.date }}</p>
 									<p ng-hide="!project.mark || project.mark.length === 0"><strong>Calificación: </strong>{{ project.mark }}</p>
 								</div>
-								<div id="project-image-container" class="col-md-4">
+								<div class="project-image-container col-md-4">
 									<img src="img/{{ project.img }}" alt="{{ project.imgDescription }}" class="img-circle">
 								</div>
 							</div>
@@ -122,7 +123,7 @@
 					</li>
 				</ul>
 				<div class="col-md-12">
-					<canvas id="chart" width="150px" height="150px"></canvas>
+					<canvas id="chart" width="150" height="150"></canvas>
 				</div>
 			</aside>
 		</div>
