@@ -383,7 +383,12 @@ app.directive('dateField', function() {
 	return {
 		require: 'ngModel',
 		link: function(scope, elm, attrs, ctrl) {
-			elm.datepicker({ dateFormat: 'dd/mm/yy' });
+			elm.datepicker({ 
+					dateFormat: 'dd/mm/yy',
+					firstDay: 1
+				}, $.datepicker.regional['es']
+			);
+			
 
 			ctrl.$parsers.push(function(data) {
 				var date = Date.parseExact(data, "dd/MM/yyyy");
