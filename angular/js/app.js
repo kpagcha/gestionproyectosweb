@@ -379,41 +379,21 @@ app.directive('emailUca', function() {
 	};
 });
 
-app.directive("dateField", function() {
+app.directive('dateField', function() {
 	return {
 		require: 'ngModel',
 		link: function(scope, elm, attrs, ctrl) {
 			ctrl.$parsers.push(function(data) {
-				var date = Date.parseExact(data, 'dd-MM-yyyy');
+				var date = Date.parseExact(data, "dd/MM/yyyy");
 
 				ctrl.$setValidity('date', date != null);
-				ctrl.$setValidity('max', date > new Date());
+				if (date != null)
+					ctrl.$setValidity('max', date <= new Date());
+				else
+					ctrl.$setValidity('max', true);
 
-              	return date == null ? undefined : date;
+				return date == null ? undefined : date;
 			});
-			/*ctrl.$formatters.push(function(data) {
-				return $filter('date')(data, 'dd-MM-yyyy');
-			});*/
-		}
-	};
-});
-
-app.directive('emailUca', function() {
-	return {
-		require: 'ngModel',
-		link: function(scope, elm, attrs, ctrl) {
-			ctrl.$validators.emailUca = function(modelValue, viewValue) {
-				if (ctrl.$isEmpty(modelValue)) {
-					return true;
-				}
-				
-				var pos = viewValue.indexOf("@alum.uca.es");
-				if (pos > -1 && pos == viewValue.length - "@alum.uca.es".length) {
-					return true;
-				}
-
-				return false;
-			};
 		}
 	};
 });
