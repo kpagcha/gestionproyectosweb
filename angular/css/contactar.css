@@ -24,7 +24,8 @@
 	padding: 0px 40px;
 }
 
-#contact h1{
+#contact h2 {
+	font-size: 36px;
 	border-bottom: 2px solid #aaa;
 	padding-bottom: 10px;
 }

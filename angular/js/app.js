@@ -359,6 +359,26 @@ app.controller('AdminCtrl', function($scope, ws) {
 	}
 });
 
+app.directive('emailUca', function() {
+	return {
+		require: 'ngModel',
+		link: function(scope, elm, attrs, ctrl) {
+			ctrl.$validators.emailUca = function(modelValue, viewValue) {
+				if (ctrl.$isEmpty(modelValue)) {
+					return true;
+				}
+				
+				var pos = viewValue.indexOf("@alum.uca.es");
+				if (pos > -1 && pos == viewValue.length - "@alum.uca.es".length) {
+					return true;
+				}
+
+				return false;
+			};
+		}
+	};
+});
+
 app.config(['$httpProvider', function($httpProvider) {
 	$httpProvider.defaults.useXDomain = true;
 	delete $httpProvider.defaults.headers.common['X-Requested-With'];
