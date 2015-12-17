@@ -379,6 +379,45 @@ app.directive('emailUca', function() {
 	};
 });
 
+app.directive("dateField", function() {
+	return {
+		require: 'ngModel',
+		link: function(scope, elm, attrs, ctrl) {
+			ctrl.$parsers.push(function(data) {
+				var date = Date.parseExact(data, 'dd-MM-yyyy');
+
+				ctrl.$setValidity('date', date != null);
+				ctrl.$setValidity('max', date > new Date());
+
+              	return date == null ? undefined : date;
+			});
+			/*ctrl.$formatters.push(function(data) {
+				return $filter('date')(data, 'dd-MM-yyyy');
+			});*/
+		}
+	};
+});
+
+app.directive('emailUca', function() {
+	return {
+		require: 'ngModel',
+		link: function(scope, elm, attrs, ctrl) {
+			ctrl.$validators.emailUca = function(modelValue, viewValue) {
+				if (ctrl.$isEmpty(modelValue)) {
+					return true;
+				}
+				
+				var pos = viewValue.indexOf("@alum.uca.es");
+				if (pos > -1 && pos == viewValue.length - "@alum.uca.es".length) {
+					return true;
+				}
+
+				return false;
+			};
+		}
+	};
+});
+
 app.config(['$httpProvider', function($httpProvider) {
 	$httpProvider.defaults.useXDomain = true;
 	delete $httpProvider.defaults.headers.common['X-Requested-With'];
