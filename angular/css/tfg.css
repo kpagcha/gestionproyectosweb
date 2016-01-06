@@ -15,6 +15,10 @@
 	color: #fff;
 }
 
+h2 {
+	font-size: 24px;
+}
+
 .iconic-information-block {
 	margin: 0 auto;
 	float: none;
@@ -85,6 +89,9 @@
 
 #stats li:first-child {
 	font-size: 16px;
+	margin-bottom: 20px;
+	padding-bottom: 20px;
+	border-bottom: 1px solid #ddd;
 }
 
 #home-icon {

@@ -13,6 +13,7 @@ app.controller('IndexCtrl', function($scope, ws) {
 			});
 
 			count++;
+
 			return count < limit;
 		});
 
@@ -348,7 +349,7 @@ app.controller('AdminCtrl', function($scope, ws) {
 		$scope.resultSearch = null;
 		$scope.key = null;
 	}
-		
+
 	$scope.changeState = function(state) {
 		$scope.selectedState = state;
 	};
@@ -367,7 +368,7 @@ app.directive('emailUca', function() {
 				if (ctrl.$isEmpty(modelValue)) {
 					return true;
 				}
-				
+
 				var pos = viewValue.indexOf("@alum.uca.es");
 				if (pos > -1 && pos == viewValue.length - "@alum.uca.es".length) {
 					return true;
@@ -383,12 +384,11 @@ app.directive('dateField', function() {
 	return {
 		require: 'ngModel',
 		link: function(scope, elm, attrs, ctrl) {
-			elm.datepicker({ 
+			elm.datepicker({
 					dateFormat: 'dd/mm/yy',
 					firstDay: 1
 				}, $.datepicker.regional['es']
 			);
-			
 
 			ctrl.$parsers.push(function(data) {
 				var date = Date.parseExact(data, "dd/MM/yyyy");

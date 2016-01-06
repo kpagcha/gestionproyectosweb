@@ -77,7 +77,8 @@
 								<span class="input-group-addon">
 									<span class="glyphicon glyphicon-search"></span>
 								</span>
-								<input type="text" class="form-control" ng-model="title" placeholder="Filtrar por título">
+								<label for="search" class="sr-only">Filtrar por título</label>
+								<input type="text" class="form-control" ng-model="title" placeholder="Filtrar por título" id="search">
 							</div>
 						</div>
 						<div class="panel panel-default" ng-repeat="project in projects | filter:{title: title}">
@@ -103,12 +104,11 @@
 				</div>
 			</section>
 			<aside id="stats" class="col-md-4">
-				<h3 class="aside-header">Estadísticas</h3>
+				<h2 class="aside-header">Estadísticas</h3>
 				<ul class="list-unstyled">
 					<li>
 						<strong>Total de proyectos: </strong>{{ homeAutomation + health + tourism }}
 					</li>
-					<hr>
 					<li>
 						<span id="home-icon" class="glyphicon glyphicon-home"></span>
 						<span><strong>Proyectos de domótica: </strong><span id="homeAutomation-count">{{ homeAutomation }}</span></span>

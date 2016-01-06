@@ -130,9 +130,9 @@
 								<div class="modal-body">
 									<form ng-hide="resultProject" id="create" name="create" ng-submit="submitCreateForm(create)" class="form-horizontal" novalidate>
 										<div class="form-group">
-											<label for="name" class="col-md-3 control-label">Nombre</label>
+											<label for="create-name" class="col-md-3 control-label">Nombre</label>
 											<div class="col-md-9">
-												<input required type="text" ng-model="project.name" ng-pattern="/^[a-z\u00E0-\u00FC ]+$/i" name="name" class="form-control">
+												<input required type="text" ng-model="project.name" ng-pattern="/^[a-z\u00E0-\u00FC ]+$/i" name="name" class="form-control" id="create-name">
 												<div ng-show="create.$submitted || create.name.$touched">
 													<span class="help-block" ng-show="create.name.$error.required">El nombre es obligatorio</span>
 													<span class="help-block" ng-show="create.name.$error.pattern">Caracteres inválidos</span>
@@ -140,9 +140,9 @@
 											</div>
 										</div>
 										<div class="form-group">
-											<label for="firstLastName" class="col-md-3 control-label">Primer apellido</label>
+											<label for="create-firstLastName" class="col-md-3 control-label">Primer apellido</label>
 											<div class="col-md-9">
-												<input required type="text" ng-model="project.firstLastName" ng-pattern="/^[a-z\u00E0-\u00FC ]+$/i" name="firstLastName" class="form-control">
+												<input required type="text" ng-model="project.firstLastName" ng-pattern="/^[a-z\u00E0-\u00FC ]+$/i" name="firstLastName" class="form-control" id="create-firstLastName">
 												<div ng-show="create.$submitted || create.firstLastName.$touched">
 													<span class="help-block" ng-show="create.firstLastName.$error.required">El primer apellido es obligatorio</span>
 													<span class="help-block" ng-show="create.firstLastName.$error.pattern">Caracteres inválidos</span>
@@ -150,18 +150,18 @@
 											</div>
 										</div>
 										<div class="form-group">
-											<label for="secondLastName" class="col-md-3 control-label">Segundo apellido</label>
+											<label for="create-secondLastName" class="col-md-3 control-label">Segundo apellido</label>
 											<div class="col-md-9">
-												<input type="text" ng-model="project.secondLastName" ng-pattern="/^[a-z\u00E0-\u00FC ]+$/i" name="secondLastName" class="form-control">
+												<input type="text" ng-model="project.secondLastName" ng-pattern="/^[a-z\u00E0-\u00FC ]+$/i" name="secondLastName" class="form-control" id="create-secondLastName">
 												<div ng-show="create.$submitted || create.secondLastName.$touched">
 													<span class="help-block" ng-show="create.secondLastName.$error.pattern">Caracteres inválidos</span>
 												</div>
 											</div>
 										</div>
 										<div class="form-group">
-											<label for="email" class="col-md-3 control-label">Correo electrónico</label>
+											<label for="create-email" class="col-md-3 control-label">Correo electrónico</label>
 											<div class="col-md-9">
-												<input required type="email" ng-model="project.email" name="email" class="form-control" email-uca>
+												<input required type="email" ng-model="project.email" name="email" class="form-control" email-uca id="create-email">
 												<div ng-show="create.$submitted || create.email.$touched">
 													<span class="help-block" ng-show="create.email.$error.required">El correo electrónico es obligatorio</span>
 													<span class="help-block" ng-show="create.email.$error.email">Formato inválido de dirección de correo electrónico</span>
@@ -170,18 +170,18 @@
 											</div>
 										</div>
 										<div class="form-group">
-											<label for="title" class="col-md-3 control-label">Título del proyecto</label>
+											<label for="create-title" class="col-md-3 control-label">Título del proyecto</label>
 											<div class="col-md-9">
-												<input required type="text" ng-model="project.title" name="title" class="form-control">
+												<input required type="text" ng-model="project.title" name="title" class="form-control" id="create-title">
 												<div ng-show="create.$submitted || create.title.$touched">
 													<span class="help-block" ng-show="create.title.$error.required">El título del proyecto es obligatorio</span>
 												</div>
 											</div>
 										</div>
 										<div class="form-group">
-											<label for="topic" class="col-md-3 control-label">Temática</label>
+											<label for="create-topic" class="col-md-3 control-label">Temática</label>
 											<div class="col-md-9">
-												<select ng-model="project.topic" name="topic" class="form-control">
+												<select ng-model="project.topic" name="topic" class="form-control" id="create-topic">
 													<option value="Domótica">Domótica</option>
 													<option value="Salud">Salud</option>
 													<option value="Turismo">Turismo</option>
@@ -189,9 +189,9 @@
 											</div>
 										</div>
 										<div class="form-group">
-											<label for="tutor" class="col-md-3 control-label">Tutor</label>
+											<label for="create-tutor" class="col-md-3 control-label">Tutor</label>
 											<div class="col-md-9">
-												<input required type="text" ng-model="project.tutor" ng-pattern="/^[a-z\u00E0-\u00FC ]+$/i" name="tutor" class="form-control">
+												<input required type="text" ng-model="project.tutor" ng-pattern="/^[a-z\u00E0-\u00FC ]+$/i" name="tutor" class="form-control" id="create-tutor">
 												<div ng-show="create.$submitted || create.tutor.$touched">
 													<span class="help-block" ng-show="create.tutor.$error.required">El tutor es obligatorio</span>
 													<span class="help-block" ng-show="create.tutor.$error.pattern">Caracteres inválidos</span>
@@ -199,16 +199,16 @@
 											</div>
 										</div>
 										<div class="form-group">
-											<label for="cotutor" class="col-md-3 control-label">Cotutor</label>
+											<label for="create-cotutor" class="col-md-3 control-label">Cotutor</label>
 											<div class="col-md-9">
-												<input type="text" ng-model="project.cotutor" ng-pattern="/^[a-z\u00E0-\u00FC ]+$/i" name="cotutor" class="form-control">
+												<input type="text" ng-model="project.cotutor" ng-pattern="/^[a-z\u00E0-\u00FC ]+$/i" name="cotutor" class="form-control" id="create-cotutor">
 												<div ng-show="create.$submitted || create.cotutor.$touched">
 													<span class="help-block" ng-show="create.cotutor.$error.pattern">Caracteres inválidos</span>
 												</div>
 											</div>
 										</div>
 										<div class="form-group">
-											<label for="state" class="col-md-3 control-label">Estado del proyecto</label>
+											<label class="col-md-3 control-label">Estado del proyecto</label>
 											<div class="col-md-9">
 												<label class="radio-inline">
 													<input type="radio" name="state" value="presentado" ng-model="project.state" ng-change="changeState(project.state)"> Presentado
@@ -219,9 +219,9 @@
 											</div>
 										</div>
 										<div class="form-group" ng-hide="selectedState === 'en desarrollo'">
-											<label for="date" class="col-md-3 control-label">Fecha de presentación</label>
+											<label for="create-date" class="col-md-3 control-label">Fecha de presentación</label>
 											<div class="col-md-9">
-												<input type="text" ng-model="project.date" name="date" class="form-control" date-field>
+												<input type="text" ng-model="project.date" name="date" class="form-control" date-field id="create-date">
 												<div ng-show="create.$submitted || create.date.$touched">
 													<span class="help-block" ng-show="create.date.$error.date">Formato de fecha inválido (dd/mm/aaaa)</span>
 													<span class="help-block" ng-show="create.date.$error.max">La fecha no puede ser mayor que la actual</span>
@@ -229,9 +229,9 @@
 											</div>
 										</div>
 										<div class="form-group" ng-hide="selectedState === 'en desarrollo'">
-											<label for="mark" class="col-md-3 control-label">Calificación</label>
+											<label for="create-mark" class="col-md-3 control-label">Calificación</label>
 											<div class="col-md-9">
-												<input type="number" ng-model="project.mark" name="mark" min="0" max="10" class="form-control">
+												<input type="number" ng-model="project.mark" name="mark" min="0" max="10" class="form-control" id="create-mark">
 												<div ng-show="create.$submitted || create.mark.$touched">
 													<span class="help-block" ng-show="create.mark.$error.min || create.mark.$error.max">La calificación debe tener un valor entre 0 y 10</span>
 												</div>
@@ -280,9 +280,9 @@
 								<div class="modal-body">
 									<form ng-hide="resultProject" id="update" name="update" ng-submit="submitUpdateForm(update)" class="form-horizontal" novalidate>
 										<div class="form-group">
-											<label for="key" class="col-md-2 control-label">Clave</label>
+											<label for="update-key" class="col-md-2 control-label">Clave</label>
 											<div class="col-md-10">
-												<input required type="text" ng-model="project.key" name="key" class="form-control" placeholder="Clave del estudiante">
+												<input required type="text" ng-model="project.key" name="key" class="form-control" placeholder="Clave del estudiante" id="update-key">
 												<div ng-show="update.$submitted || update.key.$touched">
 													<span class="help-block" ng-show="update.key.$error.required">Introduce la clave de estudiante</span>
 												</div>
@@ -292,13 +292,13 @@
 											<hr>
 										</div>
 										<div class="form-group">
-											<label for="title" class="col-md-3 control-label">Título del proyecto</label>
+											<label for="update-title" class="col-md-3 control-label">Título del proyecto</label>
 											<div class="col-md-9">
-												<input type="text" ng-model="project.title" name="title" class="form-control">
+												<input type="text" ng-model="project.title" name="title" class="form-control" id="update-title">
 											</div>
 										</div>
 										<div class="form-group">
-											<label for="state" class="col-md-3 control-label">Estado del proyecto</label>
+											<label class="col-md-3 control-label">Estado del proyecto</label>
 											<div class="col-md-9">
 												<label class="radio-inline">
 													<input type="radio" name="state" value="presentado" ng-model="project.state" ng-change="changeState(project.state)"> Presentado
@@ -309,9 +309,9 @@
 											</div>
 										</div>
 										<div class="form-group" ng-hide="selectedState === 'en desarrollo'">
-											<label for="date" class="col-md-3 control-label">Fecha de presentación</label>
+											<label for="update-date" class="col-md-3 control-label">Fecha de presentación</label>
 											<div class="col-md-9">
-												<input type="text" ng-model="project.date" name="date" class="form-control" date-field>
+												<input type="text" ng-model="project.date" name="date" class="form-control" date-field id="update-date">
 												<div ng-show="update.$submitted || update.date.$touched">
 													<span class="help-block" ng-show="update.date.$error.date">Formato de fecha inválido (dd/mm/aaaa)</span>
 													<span class="help-block" ng-show="update.date.$error.max">La fecha no puede ser mayor que la actual</span>
@@ -319,9 +319,9 @@
 											</div>
 										</div>
 										<div class="form-group" ng-hide="selectedState === 'en desarrollo'">
-											<label for="mark" class="col-md-3 control-label">Calificación</label>
+											<label for="update-mark" class="col-md-3 control-label">Calificación</label>
 											<div class="col-md-9">
-												<input type="number" ng-model="project.mark" name="mark" min="0" max="10" class="form-control">
+												<input type="number" ng-model="project.mark" name="mark" min="0" max="10" class="form-control" id="update-mark">
 												<div ng-show="update.$submitted || update.mark.$touched">
 													<span class="help-block" ng-show="update.mark.$error.min || update.mark.$error.max">La calificación debe tener un valor entre 0 y 10</span>
 												</div>
@@ -370,9 +370,9 @@
 								<div class="modal-body">
 									<form ng-hide="resultDelete" id="delete" name="delete" ng-submit="submitDeleteForm(delete)" class="form-horizontal" novalidate>
 										<div class="form-group">
-											<label for="key" class="col-md-2 control-label">Clave</label>
+											<label for="delete-key" class="col-md-2 control-label">Clave</label>
 											<div class="col-md-10">
-												<input required type="text" ng-model="key" name="key" class="form-control" placeholder="Clave del estudiante">
+												<input required type="text" ng-model="key" name="key" class="form-control" placeholder="Clave del estudiante" id="delete-key">
 												<div ng-show="delete.$submitted || delete.key.$touched">
 													<span class="help-block" ng-show="delete.key.$error.required">Introduce la clave de estudiante</span>
 												</div>
@@ -408,9 +408,9 @@
 								<div class="modal-body">
 									<form ng-hide="resultSearch" id="search" name="search" ng-submit="submitSearchForm(search)" class="form-horizontal" novalidate>
 										<div class="form-group">
-											<label for="key" class="col-md-2 control-label">Clave</label>
+											<label for="search-key" class="col-md-2 control-label">Clave</label>
 											<div class="col-md-10">
-												<input required type="text" ng-model="key" name="key" class="form-control" placeholder="Clave del estudiante">
+												<input required type="text" ng-model="key" name="key" class="form-control" placeholder="Clave del estudiante" id="search-key">
 												<div ng-show="search.$submitted || search.key.$touched">
 													<span class="help-block" ng-show="search.key.$error.required">Introduce la clave de estudiante</span>
 												</div>
